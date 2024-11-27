@@ -4,21 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Money Auction</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1, h3, h2 {
+            margin: 10px 0;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        #countdown-timer {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    
     <h1>The Money Auction</h1>
     <h3>The Auction Pot</h3>
     <h2>$100</h2>
     <h3>Your Countdown</h3>
     <p>Your Time Remaining: <span id="countdown-timer">Loading...</span></p>
-
     <button id="place-bid-button" class="btn">Place Bid To Add 30 Seconds</button>
+    <p>The last bidder with time left wins the constantly growing Auction Pot, even if it grows to $100 million!</p>
+    <p>The Auction Pot grows every time a new person joins!</p>
+    <p>The last bidder with time left on their countdown wins the right to buy the Auction Pot for $1, even if it grows to $100 million!</p>
+    <p>There is no luck or chance involved with The Money Auction.</p>
+    <p>Winning is simply a matter of resetting your countdown before it reaches 00:00:00 longer than everyone else!</p>
+    <p>It is a battle of the strongest will!</p>
 
     <script>
         // Initial countdown time in seconds
-        let countdownTime = 300; // Adjust this for the starting countdown time
+        let countdownTime = 300; // 5 minutes (adjust as needed)
 
         // Function to update the countdown timer
         function updateCountdown() {
@@ -44,20 +72,10 @@
         const timerInterval = setInterval(updateCountdown, 1000);
 
         // Add event listener to the "Place Bid" button
-        document.getElementById('place-bid-button').addEventListener('click', async function() {
-            // Simulate sending bid to the server
-            const response = await fetch('/bid', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ bid: true }) // Example payload
-            });
-
-            if (response.ok) {
-                // Add 30 seconds to the countdown when a bid is placed
-                countdownTime += 30;
-            } else {
-                alert("Failed to place bid. Try again.");
-            }
+        document.getElementById('place-bid-button').addEventListener('click', function() {
+            // Add 30 seconds to the countdown
+            countdownTime += 30;
+            alert("Bid placed! 30 seconds added to your countdown.");
         });
     </script>
     
