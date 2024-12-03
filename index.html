@@ -28,6 +28,18 @@
             font-size: 24px;
             font-weight: bold;
         }
+        
+        /* Define keyframes for the animation */
+@keyframes bidButtonAnimation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Apply the animation to the button */
+.animate-button {
+    animation: bidButtonAnimation 0.3s ease-in-out;
+}
     </style>
 </head>
 <body>
