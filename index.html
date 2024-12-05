@@ -43,6 +43,15 @@
         .bouncing {
             animation: bounce 0.5s;
         }
+        .bid-input {
+            margin-bottom: 20px;
+        }
+        .bid-input input {
+            width: 50px;
+            padding: 5px;
+            font-size: 16px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -52,7 +61,14 @@
     <h3>Your Countdown</h3>
     
     <p><span id="countdown-timer">Loading...</span></p>
-    <button id="place-bid-button" class="btn">Place Time Bid To Add 60 Seconds</button>
+
+    <div class="bid-input">
+        <label for="bid-quantity">Number of Bids:</label>
+        <input type="number" id="bid-quantity" value="1" min="1">
+    </div>
+
+    <button id="place-bid-button" class="btn">Place Time Bid(s)</button>
+
     <p>The last person with time left wins the constantly growing Pot, even if it grows to $1 billion!</p>
     <p>The Pot grows every time a new bid is placed!</p>
     <p>The last person with time left on their countdown wins the Pot for $1, even if it grows to $1 billion!</p>
@@ -70,7 +86,7 @@
             let minutes = Math.floor((countdownTime % 3600) / 60);
             let seconds = countdownTime % 60;
 
-            // Format the timer to have two digits
+            // Format minutes and seconds to have two digits
             minutes = minutes < 10 ? "0" + minutes : minutes;
             seconds = seconds < 10 ? "0" + seconds : seconds;
 
@@ -91,8 +107,16 @@
         // Add event listener to the "Place Bid" button
         const placeBidButton = document.getElementById('place-bid-button');
         placeBidButton.addEventListener('click', function() {
-            // Add 60 seconds to the countdown
-            countdownTime += 60;
+            const bidQuantityInput = document.getElementById('bid-quantity');
+            let bidQuantity = parseInt(bidQuantityInput.value);
+
+            if (isNaN(bidQuantity) || bidQuantity < 1) {
+                alert('Please enter a valid number of bids.');
+                return;
+            }
+
+            // Add 60 seconds per bid to the countdown
+            countdownTime += 60 * bidQuantity;
 
             // Add the bouncing effect
             placeBidButton.classList.add('bouncing');
