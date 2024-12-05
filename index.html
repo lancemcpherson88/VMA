@@ -14,72 +14,120 @@
       referrerpolicy="no-referrer"
     />
     <style>
+        /* Reset default margins and paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 0;
             background-color: #f5f5f5;
             color: #333;
-        }
-        h1, h2, h3 {
-            margin: 10px 0;
+            scroll-behavior: smooth;
         }
         /* Header Styles */
         .header {
-            background-color: #0074D9; /* Blue background */
-            padding: 10px;
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
-            z-index: 100;
+            top: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            transition: background-color 0.3s, padding 0.3s;
         }
+        .header.scrolled {
+            background-color: #0074D9; /* Background color when scrolled */
+            padding: 10px 40px;
+        }
+        .header .logo {
+            float: left;
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .header .nav {
+            float: right;
+        }
+        .header .nav ul {
+            list-style: none;
+        }
+        .header .nav ul li {
+            display: inline-block;
+            margin-left: 30px;
+        }
+        .header .nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        .header .nav ul li a:hover {
+            color: #FFDC00;
+        }
+        /* Hamburger Menu Icon */
         .header .menu-icon {
-            color: #fff; /* White icon */
-            font-size: 30px;
+            display: none;
+            font-size: 24px;
+            color: #fff;
             cursor: pointer;
         }
-        .nav-links {
-            display: none; /* Hidden by default */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
+        /* Mobile Menu */
+        @media (max-width: 768px) {
+            .header .nav {
+                display: none;
+                width: 100%;
+                background-color: #0074D9;
+                position: absolute;
+                top: 60px;
+                left: 0;
+            }
+            .header .nav ul {
+                display: block;
+                text-align: left;
+            }
+            .header .nav ul li {
+                display: block;
+                margin: 10px 0;
+                padding: 0 20px;
+            }
+            .header .nav ul li a {
+                display: block;
+            }
+            .header .menu-icon {
+                display: block;
+                float: right;
+            }
+            .header .logo {
+                float: left;
+            }
         }
-        .nav-links a {
-            color: #fff;
-            font-size: 36px;
-            text-align: center;
-            padding: 16px;
-            text-decoration: none;
+        /* Clearfix */
+        .header::after {
+            content: '';
+            display: table;
+            clear: both;
         }
-        .nav-links a:hover {
-            color: #FFDC00;
-        }
-        .nav-links i {
-            margin-right: 8px;
-        }
-        .close-menu-icon {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 40px;
-            color: #fff;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .close-menu-icon:hover {
-            color: #FFDC00;
-        }
+        /* Content Styles */
         .content {
-            padding: 80px 20px 20px; /* Adjusted padding for fixed menu icon */
+            padding: 140px 20px 20px; /* Adjusted padding for fixed header */
         }
+        .section {
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .section h1, .section h2, .section h3 {
+            color: #0074D9;
+            margin-bottom: 20px;
+        }
+        .section p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+        }
+        /* Button Styles */
         .btn {
             background-color: #FFDC00;
             color: #333;
@@ -87,34 +135,20 @@
             border: none;
             cursor: pointer;
             font-size: 18px;
-            position: relative;
             transition: background-color 0.3s;
             border-radius: 4px;
             font-weight: bold;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         .btn:hover {
             background-color: #FF851B;
         }
+        /* Countdown Timer */
         #countdown-timer {
             font-size: 32px;
             font-weight: bold;
             color: #FF4136;
         }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-        .bouncing {
-            animation: bounce 0.5s;
-        }
+        /* Bid Input Styles */
         .bid-input {
             display: inline-flex;
             align-items: center;
@@ -147,80 +181,153 @@
         .bid-input input:focus {
             border-color: #0074D9;
         }
-        /* Additional Styles */
-        h1 {
-            color: #0074D9;
-            font-size: 36px;
-        }
-        h2 {
-            color: #FF4136;
-            font-size: 32px;
-        }
-        h3 {
-            color: #333;
+        /* Scroll to top button */
+        #scrollTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 1000;
             font-size: 24px;
+            background-color: #0074D9;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
-        p {
-            font-size: 18px;
-            color: #555;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 10px auto;
+        #scrollTopBtn:hover {
+            background-color: #005bb5;
         }
     </style>
 </head>
 <body>
-    <!-- Header with menu icon -->
-    <div class="header">
-        <a href="javascript:void(0);" class="menu-icon" id="menu-icon"><i class="fas fa-bars"></i></a>
-    </div>
-
-    <!-- Overlay Menu -->
-    <div class="nav-links" id="nav-links">
-        <a href="javascript:void(0);" class="close-menu-icon" id="close-menu-icon"><i class="fas fa-times"></i></a>
-        <a href="#faq"><i class="fas fa-question-circle"></i>FAQ</a>
-        <a href="#twitter"><i class="fab fa-twitter"></i>Twitter</a>
-        <a href="#telegram"><i class="fab fa-telegram-plane"></i>Telegram</a>
-        <a href="#invite-post"><i class="fas fa-envelope-open-text"></i>Invite Post</a>
-        <a href="#check-posts"><i class="fas fa-check-circle"></i>Check Posts</a>
+    <!-- Header with logo and navigation links -->
+    <div class="header" id="header">
+        <a href="#" class="logo">The Money Auction</a>
+        <div class="menu-icon" id="menu-icon"><i class="fas fa-bars"></i></div>
+        <nav class="nav" id="nav">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#twitter">Twitter</a></li>
+                <li><a href="#telegram">Telegram</a></li>
+                <li><a href="#invite-post">Invite Post</a></li>
+                <li><a href="#check-posts">Check Posts</a></li>
+            </ul>
+        </nav>
     </div>
 
     <!-- Main Content -->
-    <div class="content">
-        <h1>LAST MAN LEFT</h1>
-        <h3>The Pot</h3>
-        <h2>$100</h2>
-        <h3>Your Countdown</h3>
+    <div class="content" id="home">
+        <div class="section">
+            <h1>LAST MAN LEFT</h1>
+            <h3>The Pot</h3>
+            <h2>$100</h2>
+            <h3>Your Countdown</h3>
+            
+            <p><span id="countdown-timer">Loading...</span></p>
         
-        <p><span id="countdown-timer">Loading...</span></p>
-    
-        <div class="bid-input">
-            <button id="decrease-bid">-</button>
-            <input type="text" id="bid-quantity" value="1">
-            <button id="increase-bid">+</button>
+            <div class="bid-input">
+                <button id="decrease-bid">-</button>
+                <input type="text" id="bid-quantity" value="1">
+                <button id="increase-bid">+</button>
+            </div>
+        
+            <br>
+        
+            <button id="place-bid-button" class="btn">Place Time Bid(s)</button>
+        
+            <p>The last person with time left wins the constantly growing Pot, even if it grows to $1 billion!</p>
+            <p>The Pot grows every time a new bid is placed!</p>
+            <p>The last person with time left on their countdown wins the Pot for $1, even if it grows to $1 billion!</p>
+            <p>There is no luck or chance involved with Last Man Left.</p>
+            <p>Winning is simply a matter of resetting your countdown before it reaches 00:00:00 longer than everyone else!</p>
+            <p>It is a battle of the strongest will!</p>
         </div>
-    
-        <br>
-    
-        <button id="place-bid-button" class="btn">Place Time Bid(s)</button>
-    
-        <p>The last person with time left wins the constantly growing Pot, even if it grows to $1 billion!</p>
-        <p>The Pot grows every time a new bid is placed!</p>
-        <p>The last person with time left on their countdown wins the Pot for $1, even if it grows to $1 billion!</p>
-        <p>There is no luck or chance involved with Last Man Left.</p>
-        <p>Winning is simply a matter of resetting your countdown before it reaches 00:00:00 longer than everyone else!</p>
-        <p>It is a battle of the strongest will!</p>
+
+        <!-- Additional Sections -->
+        <div class="section" id="faq">
+            <h2>FAQ</h2>
+            <p>Frequently Asked Questions...</p>
+        </div>
+        <div class="section" id="twitter">
+            <h2>Twitter</h2>
+            <p>Follow us on Twitter...</p>
+        </div>
+        <div class="section" id="telegram">
+            <h2>Telegram</h2>
+            <p>Join our Telegram group...</p>
+        </div>
+        <div class="section" id="invite-post">
+            <h2>Invite Post</h2>
+            <p>Invite your friends...</p>
+        </div>
+        <div class="section" id="check-posts">
+            <h2>Check Posts</h2>
+            <p>Check your posts...</p>
+        </div>
     </div>
 
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
+
     <script>
-        // Toggle overlay menu
-        document.getElementById('menu-icon').addEventListener('click', function() {
-            document.getElementById('nav-links').style.display = 'flex';
+        // Sticky Header and Scroll Functionality
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+                scrollTopBtn.style.display = 'block';
+            } else {
+                header.classList.remove('scrolled');
+                scrollTopBtn.style.display = 'none';
+            }
         });
 
-        // Close overlay menu
-        document.getElementById('close-menu-icon').addEventListener('click', function() {
-            document.getElementById('nav-links').style.display = 'none';
+        // Smooth Scroll for Navigation Links
+        document.querySelectorAll('.nav ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu after clicking
+                    if (window.innerWidth <= 768) {
+                        nav.style.display = 'none';
+                    }
+                }
+            });
+        });
+
+        // Toggle Mobile Menu
+        const menuIcon = document.getElementById('menu-icon');
+        const nav = document.getElementById('nav');
+        menuIcon.addEventListener('click', function() {
+            if (nav.style.display === 'block') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'block';
+            }
+        });
+
+        // Hide Mobile Menu on Outside Click
+        document.addEventListener('click', function(event) {
+            const isClickInside = nav.contains(event.target) || menuIcon.contains(event.target);
+            if (!isClickInside && window.innerWidth <= 768) {
+                nav.style.display = 'none';
+            }
+        });
+
+        // Scroll to Top Button Functionality
+        document.getElementById('scrollTopBtn').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
 
         // Initial countdown time in seconds
@@ -292,12 +399,6 @@
 
             // Add 60 seconds per bid to the countdown
             countdownTime += 60 * bidQuantity;
-
-            // Add the bouncing effect
-            placeBidButton.classList.add('bouncing');
-            setTimeout(() => {
-                placeBidButton.classList.remove('bouncing');
-            }, 500); // Duration of the bounce animation
 
             // Reset bid quantity to 1
             updateBidQuantity(1);
