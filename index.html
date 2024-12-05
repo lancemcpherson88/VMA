@@ -8,7 +8,7 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-d4B3bd3eI0j0RafjaKH0QPrNwgQJ9iNkrm4E7V6R1yj0LzIK0xKwZ63B+/eVnF9hKdOQQ1jQk7/sfRsnx0KjQ=="
+      integrity="sha512-1PmnCnWX0p+dVKZtJYV50k3vO+/LgjXosvKLUpaGpXk/2BtHl0axdv3WRKp0Poq0qYcRM6z1zrc85S2xFtsEiw=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
@@ -16,17 +16,17 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 0; /* Remove default margin */
+            margin: 0;
         }
         h1, h3, h2 {
             margin: 10px 0;
         }
         /* Header Styles */
         .header {
-            background-color: rgba(0, 0, 0, 0.9); /* Darker and more opaque */
+            background-color: rgba(0, 0, 0, 0.9);
             overflow: hidden;
             padding: 10px 0;
-            position: fixed; /* Make the header fixed */
+            position: fixed;
             top: 0;
             width: 100%;
             z-index: 100;
@@ -38,18 +38,18 @@
             padding: 14px 16px;
             text-decoration: none;
             display: inline-block;
-            font-size: 30px; /* Increased font size */
+            font-size: 30px;
             cursor: pointer;
         }
         .header .menu-icon:hover {
             background-color: rgba(255, 255, 255, 0.2);
         }
         .nav-links {
-            display: none; /* Hide navigation links by default */
+            display: none;
             flex-direction: column;
             background-color: rgba(0, 0, 0, 0.95);
             position: absolute;
-            top: 60px; /* Height of the header */
+            top: 60px;
             width: 100%;
             left: 0;
         }
@@ -59,7 +59,7 @@
             padding: 12px 16px;
             text-decoration: none;
             display: block;
-            font-size: 20px; /* Increased font size */
+            font-size: 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         .nav-links a:hover {
@@ -70,7 +70,7 @@
             margin-right: 8px;
         }
         .content {
-            padding: 120px 20px 20px; /* Adjusted padding to account for fixed header */
+            padding: 120px 20px 20px;
         }
         .btn {
             background-color: #ff7e5f;
@@ -147,7 +147,7 @@
                 border: none;
             }
             .header .menu-icon {
-                display: none; /* Hide menu icon on larger screens */
+                display: none;
             }
         }
     </style>
@@ -155,7 +155,7 @@
 <body>
     <!-- Header with navigation links -->
     <div class="header">
-        <a href="javascript:void(0);" class="menu-icon" id="menu-icon"><i class="fas fa-times"></i></a>
+        <a href="javascript:void(0);" class="menu-icon" id="menu-icon"><i class="fas fa-bars"></i></a>
         <div class="nav-links" id="nav-links">
             <a href="#faq"><i class="fas fa-question-circle"></i>FAQ</a>
             <a href="#twitter"><i class="fab fa-twitter"></i>Twitter</a>
@@ -167,7 +167,7 @@
 
     <!-- Main Content -->
     <div class="content">
-        <h1>LAST MAN LEFT 2</h1>
+        <h1>LAST MAN LEFT</h1>
         <h3>The Pot</h3>
         <h2>$100</h2>
         <h3>Your Countdown</h3>
@@ -193,18 +193,23 @@
     </div>
 
     <script>
-        // Toggle navigation links
+        // Toggle navigation links and icon
         document.getElementById('menu-icon').addEventListener('click', function() {
             const navLinks = document.getElementById('nav-links');
+            const menuIcon = document.getElementById('menu-icon').querySelector('i');
             if (navLinks.style.display === 'block') {
                 navLinks.style.display = 'none';
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
             } else {
                 navLinks.style.display = 'block';
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
             }
         });
 
         // Initial countdown time in seconds
-        let countdownTime = 300; // 5 minutes (adjust as needed)
+        let countdownTime = 300;
 
         // Function to update the countdown timer
         function updateCountdown() {
@@ -276,7 +281,7 @@
             placeBidButton.classList.add('bouncing');
             setTimeout(() => {
                 placeBidButton.classList.remove('bouncing');
-            }, 500); // Duration of the bounce animation
+            }, 500);
 
             // Reset bid quantity to 1
             updateBidQuantity(1);
