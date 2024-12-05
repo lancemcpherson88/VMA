@@ -52,7 +52,7 @@
     <h3>Your Countdown</h3>
     
     <p><span id="countdown-timer">Loading...</span></p>
-    <button id="place-bid-button" class="btn">Place Time Bid To Add 30 Seconds</button>
+    <button id="place-bid-button" class="btn">Place Time Bid To Add 60 Seconds</button>
     <p>The last person with time left wins the constantly growing Pot, even if it grows to $1 billion!</p>
     <p>The Pot grows every time a new bid is placed!</p>
     <p>The last person with time left on their countdown wins the Pot for $1, even if it grows to $1 billion!</p>
@@ -66,14 +66,15 @@
 
         // Function to update the countdown timer
         function updateCountdown() {
-            let minutes = Math.floor(countdownTime / 60);
+            let hours = Math.floor(countdownTime / 3600);
+            let minutes = Math.floor((countdownTime % 3600) / 60);
             let seconds = countdownTime % 60;
 
             // Format the timer to have two digits
             minutes = minutes < 10 ? "0" + minutes : minutes;
             seconds = seconds < 10 ? "0" + seconds : seconds;
 
-            document.getElementById("countdown-timer").innerText = `${minutes}:${seconds}`;
+            document.getElementById("countdown-timer").innerText = `${hours}:${minutes}:${seconds}`;
 
             // Decrement the countdown time
             if (countdownTime > 0) {
@@ -90,8 +91,8 @@
         // Add event listener to the "Place Bid" button
         const placeBidButton = document.getElementById('place-bid-button');
         placeBidButton.addEventListener('click', function() {
-            // Add 30 seconds to the countdown
-            countdownTime += 30;
+            // Add 60 seconds to the countdown
+            countdownTime += 60;
 
             // Add the bouncing effect
             placeBidButton.classList.add('bouncing');
