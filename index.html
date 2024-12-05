@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta and Title -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Money Auction</title>
@@ -13,21 +14,112 @@
       referrerpolicy="no-referrer"
     />
     <style>
+        /* Reset default margins and paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+            background-color: #f5f5f5;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        /* Header Styles */
+        .header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .header .logo a {
+            text-decoration: none;
+            color: #333;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .menu-icon {
+            cursor: pointer;
+        }
+        .menu-icon i {
+            font-size: 28px;
+            color: #000; /* Black lines */
+        }
+        .nav-links {
+            position: absolute;
+            top: 60px; /* Adjust based on header height */
+            right: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            display: none;
+            flex-direction: column;
+            min-width: 150px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 999;
+        }
+        .nav-links ul {
+            list-style: none;
+            padding: 0;
             margin: 0;
-            background-color: #f5f5f5; /* Light background */
-            color: #333; /* Dark text color */
         }
-        h1, h2, h3 {
-            margin: 10px 0;
+        .nav-links ul li {
+            border-bottom: 1px solid #eee;
         }
+        .nav-links ul li a {
+            color: #333;
+            padding: 10px 15px;
+            display: block;
+            text-decoration: none;
+        }
+        .nav-links ul li a:hover {
+            background-color: #f5f5f5;
+        }
+        /* Media Query for larger screens */
+        @media (min-width: 768px) {
+            .menu-icon {
+                display: none;
+            }
+            .nav-links {
+                position: static;
+                display: flex !important;
+                background-color: transparent;
+                flex-direction: row;
+                align-items: center;
+                border: none;
+                box-shadow: none;
+            }
+            .nav-links ul {
+                display: flex;
+            }
+            .nav-links ul li {
+                border: none;
+                margin-left: 20px;
+            }
+            .nav-links ul li a {
+                padding: 0;
+                color: #333;
+            }
+            .nav-links ul li a:hover {
+                background-color: transparent;
+                color: #0074D9;
+            }
+        }
+        /* Content Styles */
         .content {
-            padding: 60px 20px 20px; /* Adjusted padding due to removed header */
+            padding: 80px 20px 20px; /* Adjusted padding for fixed header */
         }
+        /* Rest of your styles */
         .btn {
-            background-color: #FFDC00; /* DealDash Yellow */
+            background-color: #FFDC00;
             color: #333;
             padding: 12px 24px;
             border: none;
@@ -40,26 +132,12 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         .btn:hover {
-            background-color: #FF851B; /* Slightly darker yellow/orange */
+            background-color: #FF851B;
         }
         #countdown-timer {
             font-size: 32px;
             font-weight: bold;
-            color: #FF4136; /* Red color for urgency */
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-        .bouncing {
-            animation: bounce 0.5s;
+            color: #FF4136;
         }
         .bid-input {
             display: inline-flex;
@@ -116,6 +194,25 @@
     </style>
 </head>
 <body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <a href="#">The Money Auction</a>
+        </div>
+        <div class="menu-icon" id="menu-icon">
+            <i class="fas fa-bars"></i>
+        </div>
+        <!-- Dropdown Menu -->
+        <nav class="nav-links" id="nav-links">
+            <ul>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#twitter">Twitter</a></li>
+                <li><a href="#telegram">Telegram</a></li>
+                <li><a href="#invite-post">Invite Post</a></li>
+                <li><a href="#check-posts">Check Posts</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <!-- Main Content -->
     <div class="content">
@@ -145,6 +242,28 @@
     </div>
 
     <script>
+        // Toggle dropdown menu
+        document.getElementById('menu-icon').addEventListener('click', function() {
+            const navLinks = document.getElementById('nav-links');
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+            }
+        });
+
+        // Close the dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('nav-links');
+            const menuIcon = document.getElementById('menu-icon');
+            const isClickInsideMenu = navLinks.contains(event.target);
+            const isClickOnMenuIcon = menuIcon.contains(event.target);
+
+            if (!isClickInsideMenu && !isClickOnMenuIcon && window.innerWidth < 768) {
+                navLinks.style.display = 'none';
+            }
+        });
+
         // Initial countdown time in seconds
         let countdownTime = 300; // 5 minutes (adjust as needed)
 
@@ -214,12 +333,6 @@
 
             // Add 60 seconds per bid to the countdown
             countdownTime += 60 * bidQuantity;
-
-            // Add the bouncing effect
-            placeBidButton.classList.add('bouncing');
-            setTimeout(() => {
-                placeBidButton.classList.remove('bouncing');
-            }, 500); // Duration of the bounce animation
 
             // Reset bid quantity to 1
             updateBidQuantity(1);
