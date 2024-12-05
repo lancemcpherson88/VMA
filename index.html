@@ -2,158 +2,285 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Money Auction</title>
     <!-- Include Font Awesome for icons -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-1PmnCnWX0p+dVKZtJYV50k3vO+/LgjXosvKLUpaGpXk/2BtHl0axdv3WRKp0Poq0qYcRM6z1zrc85S2xFtsEiw=="
+      integrity="sha512-d4B3bd3eI0j0RafjaKH0QPrNwgQJ9iNkrm4E7V6R1yj0LzIK0xKwZ63B+/eVnF9hKdOQQ1jQk7/sfRsnx0KjQ=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <!-- Include Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-        /* Header */
-        .header {
-            background-color: #4d93c5;
-            padding: 10px 20px;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .header .logo {
-            font-size: 20px;
-            font-weight: bold;
-        }
-        .header .nav-icons {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-        .header .nav-icons i {
-            font-size: 18px;
-        }
-        /* Main Section */
-        .main {
-            margin-top: 70px;
-            padding: 20px;
+            font-family: Arial, sans-serif;
             text-align: center;
+            margin: 0; /* Remove default margin */
         }
-        .pot-section {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .pot-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #4d93c5;
-        }
-        .pot-image {
-            width: 100%;
-            max-width: 300px;
-            margin: 20px auto;
-        }
-        .current-bid,
-        .time-left {
-            font-size: 22px;
-            font-weight: bold;
+        h1, h3, h2 {
             margin: 10px 0;
         }
-        .current-bid {
-            color: #27ae60;
-        }
-        .time-left {
-            color: #c0392b;
-        }
-        /* Buttons */
-        .btn {
-            display: block;
+        /* Header Styles */
+        .header {
+            background-color: rgba(0, 0, 0, 0.9); /* Darker and more opaque */
+            overflow: hidden;
+            padding: 10px 0;
+            position: fixed; /* Make the header fixed */
+            top: 0;
             width: 100%;
-            max-width: 300px;
-            margin: 10px auto;
-            padding: 12px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 5px;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .header .menu-icon {
+            color: #fff;
             text-align: center;
+            padding: 14px 16px;
             text-decoration: none;
+            display: inline-block;
+            font-size: 30px; /* Increased font size */
+            cursor: pointer;
         }
-        .btn-primary {
-            background-color: #ff6600;
-            color: white;
+        .header .menu-icon:hover {
+            background-color: rgba(255, 255, 255, 0.2);
         }
-        .btn-primary:hover {
-            background-color: #e65c00;
+        .nav-links {
+            display: none; /* Hide navigation links by default */
+            flex-direction: column;
+            background-color: rgba(0, 0, 0, 0.95);
+            position: absolute;
+            top: 60px; /* Height of the header */
+            width: 100%;
+            left: 0;
         }
-        .btn-secondary {
-            background-color: #4d93c5;
-            color: white;
-        }
-        .btn-secondary:hover {
-            background-color: #3a72a3;
-        }
-        .btn-danger {
-            background-color: #c0392b;
-            color: white;
-        }
-        .btn-danger:hover {
-            background-color: #a63125;
-        }
-        .footer {
-            margin-top: 20px;
-            padding: 20px;
+        .nav-links a {
+            color: #fff;
             text-align: center;
-            color: #999;
-            font-size: 14px;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 20px; /* Increased font size */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        .nav-links i {
+            margin-right: 8px;
+        }
+        .content {
+            padding: 120px 20px 20px; /* Adjusted padding to account for fixed header */
+        }
+        .btn {
+            background-color: #ff7e5f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            position: relative;
+            transition: background-color 0.3s;
+            border-radius: 4px;
+        }
+        .btn:hover {
+            background-color: #feb47b;
+        }
+        #countdown-timer {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        .bouncing {
+            animation: bounce 0.5s;
+        }
+        .bid-input {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .bid-input button {
+            background-color: #ddd;
+            border: none;
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            transition: background-color 0.3s;
+        }
+        .bid-input button:hover {
+            background-color: #ccc;
+        }
+        .bid-input input {
+            width: 60px;
+            text-align: center;
+            font-size: 16px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+        .bid-input input:focus {
+            border-color: #ff7e5f;
+        }
+        /* Media query for larger screens */
+        @media (min-width: 600px) {
+            .nav-links {
+                display: flex !important;
+                background-color: transparent;
+                position: static;
+                flex-direction: row;
+                justify-content: center;
+            }
+            .nav-links a {
+                display: inline-block;
+                border: none;
+            }
+            .header .menu-icon {
+                display: none; /* Hide menu icon on larger screens */
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header with navigation links -->
     <div class="header">
-        <div class="logo">The Money Auction</div>
-        <div class="nav-icons">
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-star"></i>
+        <a href="javascript:void(0);" class="menu-icon" id="menu-icon"><i class="fas fa-times"></i></a>
+        <div class="nav-links" id="nav-links">
+            <a href="#faq"><i class="fas fa-question-circle"></i>FAQ</a>
+            <a href="#twitter"><i class="fab fa-twitter"></i>Twitter</a>
+            <a href="#telegram"><i class="fab fa-telegram-plane"></i>Telegram</a>
+            <a href="#invite-post"><i class="fas fa-envelope-open-text"></i>Invite Post</a>
+            <a href="#check-posts"><i class="fas fa-check-circle"></i>Check Posts</a>
         </div>
     </div>
 
     <!-- Main Content -->
-    <div class="main">
-        <!-- Pot Section -->
-        <div class="pot-section">
-            <p class="pot-title">2025 The Pot - Keep Your Time Left</p>
-            <img src="https://via.placeholder.com/300x200" alt="The Pot" class="pot-image">
-            <div>
-                <p class="current-bid">$583.07</p>
-                <p class="time-left">00:05</p>
-            </div>
-            <a href="#" class="btn btn-primary">Buy Bids</a>
-            <a href="#" class="btn btn-danger">You have 0 bids left</a>
-            <a href="#" class="btn btn-secondary">Buy it now for $55,300</a>
+    <div class="content">
+        <h1>LAST MAN LEFT</h1>
+        <h3>The Pot</h3>
+        <h2>$100</h2>
+        <h3>Your Countdown</h3>
+        
+        <p><span id="countdown-timer">Loading...</span></p>
+    
+        <div class="bid-input">
+            <button id="decrease-bid">-</button>
+            <input type="text" id="bid-quantity" value="1">
+            <button id="increase-bid">+</button>
         </div>
+    
+        <br>
+    
+        <button id="place-bid-button" class="btn">Place Time Bid(s)</button>
+    
+        <p>The last person with time left wins the constantly growing Pot, even if it grows to $1 billion!</p>
+        <p>The Pot grows every time a new bid is placed!</p>
+        <p>The last person with time left on their countdown wins the Pot for $1, even if it grows to $1 billion!</p>
+        <p>There is no luck or chance involved with Last Man Left.</p>
+        <p>Winning is simply a matter of resetting your countdown before it reaches 00:00:00 longer than everyone else!</p>
+        <p>It is a battle of the strongest will!</p>
     </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        &copy; 2023 The Money Auction. All rights reserved.
-    </div>
+    <script>
+        // Toggle navigation links
+        document.getElementById('menu-icon').addEventListener('click', function() {
+            const navLinks = document.getElementById('nav-links');
+            if (navLinks.style.display === 'block') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'block';
+            }
+        });
+
+        // Initial countdown time in seconds
+        let countdownTime = 300; // 5 minutes (adjust as needed)
+
+        // Function to update the countdown timer
+        function updateCountdown() {
+            let hours = Math.floor(countdownTime / 3600);
+            let minutes = Math.floor((countdownTime % 3600) / 60);
+            let seconds = countdownTime % 60;
+
+            // Format minutes and seconds to have two digits
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            document.getElementById("countdown-timer").innerText = `${hours}:${minutes}:${seconds}`;
+
+            // Decrement the countdown time
+            if (countdownTime > 0) {
+                countdownTime--;
+            } else {
+                clearInterval(timerInterval);
+                document.getElementById("countdown-timer").innerText = "Auction Ended!";
+            }
+        }
+
+        // Start the countdown timer
+        const timerInterval = setInterval(updateCountdown, 1000);
+
+        // Bid quantity management
+        const bidQuantityInput = document.getElementById('bid-quantity');
+        const decreaseBidButton = document.getElementById('decrease-bid');
+        const increaseBidButton = document.getElementById('increase-bid');
+
+        let bidQuantity = 1;
+
+        function updateBidQuantity(value) {
+            value = parseInt(value);
+            if (isNaN(value) || value < 1) {
+                bidQuantity = 1;
+            } else {
+                bidQuantity = value;
+            }
+            bidQuantityInput.value = bidQuantity;
+        }
+
+        decreaseBidButton.addEventListener('click', function() {
+            updateBidQuantity(bidQuantity - 1);
+        });
+
+        increaseBidButton.addEventListener('click', function() {
+            updateBidQuantity(bidQuantity + 1);
+        });
+
+        bidQuantityInput.addEventListener('input', function() {
+            updateBidQuantity(bidQuantityInput.value);
+        });
+
+        // Add event listener to the "Place Bid" button
+        const placeBidButton = document.getElementById('place-bid-button');
+        placeBidButton.addEventListener('click', function() {
+            // Validate bid quantity before placing bid
+            if (isNaN(bidQuantity) || bidQuantity < 1) {
+                alert('Please enter a valid number of bids.');
+                updateBidQuantity(1);
+                return;
+            }
+
+            // Add 60 seconds per bid to the countdown
+            countdownTime += 60 * bidQuantity;
+
+            // Add the bouncing effect
+            placeBidButton.classList.add('bouncing');
+            setTimeout(() => {
+                placeBidButton.classList.remove('bouncing');
+            }, 500); // Duration of the bounce animation
+
+            // Reset bid quantity to 1
+            updateBidQuantity(1);
+        });
+    </script>
 </body>
 </html>
