@@ -20,6 +20,7 @@
             border: none;
             cursor: pointer;
             font-size: 16px;
+            position: relative;
         }
         .btn:hover {
             background-color: #45a049;
@@ -27,6 +28,20 @@
         #countdown-timer {
             font-size: 24px;
             font-weight: bold;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        .bouncing {
+            animation: bounce 0.5s;
         }
     </style>
 </head>
@@ -73,10 +88,16 @@
         const timerInterval = setInterval(updateCountdown, 1000);
 
         // Add event listener to the "Place Bid" button
-        document.getElementById('place-bid-button').addEventListener('click', function() {
+        const placeBidButton = document.getElementById('place-bid-button');
+        placeBidButton.addEventListener('click', function() {
             // Add 30 seconds to the countdown
             countdownTime += 30;
-            //alert("Bid placed! 30 seconds added to your countdown.");
+
+            // Add the bouncing effect
+            placeBidButton.classList.add('bouncing');
+            setTimeout(() => {
+                placeBidButton.classList.remove('bouncing');
+            }, 500); // Duration of the bounce animation
         });
     </script>
 </body>
