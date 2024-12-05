@@ -65,8 +65,11 @@
             text-align: center;
             font-size: 16px;
             padding: 5px;
-            border: none;
+            border: 1px solid #ccc;
             outline: none;
+        }
+        .bid-input input:focus {
+            border-color: #4CAF50;
         }
     </style>
 </head>
@@ -80,7 +83,7 @@
 
     <div class="bid-input">
         <button id="decrease-bid">-</button>
-        <input type="text" id="bid-quantity" value="1" readonly>
+        <input type="text" id="bid-quantity" value="1">
         <button id="increase-bid">+</button>
     </div>
 
@@ -130,21 +133,38 @@
 
         let bidQuantity = 1;
 
-        decreaseBidButton.addEventListener('click', function() {
-            if (bidQuantity > 1) {
-                bidQuantity--;
-                bidQuantityInput.value = bidQuantity;
+        function updateBidQuantity(value) {
+            value = parseInt(value);
+            if (isNaN(value) || value < 1) {
+                bidQuantity = 1;
+            } else {
+                bidQuantity = value;
             }
+            bidQuantityInput.value = bidQuantity;
+        }
+
+        decreaseBidButton.addEventListener('click', function() {
+            updateBidQuantity(bidQuantity - 1);
         });
 
         increaseBidButton.addEventListener('click', function() {
-            bidQuantity++;
-            bidQuantityInput.value = bidQuantity;
+            updateBidQuantity(bidQuantity + 1);
+        });
+
+        bidQuantityInput.addEventListener('input', function() {
+            updateBidQuantity(bidQuantityInput.value);
         });
 
         // Add event listener to the "Place Bid" button
         const placeBidButton = document.getElementById('place-bid-button');
         placeBidButton.addEventListener('click', function() {
+            // Validate bid quantity before placing bid
+            if (isNaN(bidQuantity) || bidQuantity < 1) {
+                alert('Please enter a valid number of bids.');
+                updateBidQuantity(1);
+                return;
+            }
+
             // Add 60 seconds per bid to the countdown
             countdownTime += 60 * bidQuantity;
 
@@ -155,8 +175,7 @@
             }, 500); // Duration of the bounce animation
 
             // Reset bid quantity to 1
-            bidQuantity = 1;
-            bidQuantityInput.value = bidQuantity;
+            updateBidQuantity(1);
         });
     </script>
 </body>
