@@ -23,56 +23,8 @@
         h1, h2, h3 {
             margin: 10px 0;
         }
-        /* Header Styles */
-        .header {
-            background-color: #0074D9; /* DealDash Blue */
-            overflow: hidden;
-            padding: 10px 0;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .header .menu-icon {
-            color: #fff;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 30px;
-            cursor: pointer;
-        }
-        .header .menu-icon:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        .nav-links {
-            display: none;
-            flex-direction: column;
-            background-color: #0074D9; /* Consistent with header */
-            position: absolute;
-            top: 60px;
-            width: 100%;
-            left: 0;
-        }
-        .nav-links a {
-            color: #fff;
-            text-align: center;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            font-size: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .nav-links a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: #fff;
-        }
-        .nav-links i {
-            margin-right: 8px;
-        }
         .content {
-            padding: 120px 20px 20px;
+            padding: 60px 20px 20px; /* Adjusted padding due to removed header */
         }
         .btn {
             background-color: #FFDC00; /* DealDash Yellow */
@@ -141,23 +93,6 @@
         .bid-input input:focus {
             border-color: #0074D9;
         }
-        /* Media query for larger screens */
-        @media (min-width: 600px) {
-            .nav-links {
-                display: flex !important;
-                background-color: transparent;
-                position: static;
-                flex-direction: row;
-                justify-content: center;
-            }
-            .nav-links a {
-                display: inline-block;
-                border: none;
-            }
-            .header .menu-icon {
-                display: none;
-            }
-        }
         /* Additional Styles */
         h1 {
             color: #0074D9;
@@ -181,17 +116,6 @@
     </style>
 </head>
 <body>
-    <!-- Header with navigation links -->
-    <div class="header">
-        <a href="javascript:void(0);" class="menu-icon" id="menu-icon"><i class="fas fa-bars"></i></a>
-        <div class="nav-links" id="nav-links">
-            <a href="#faq"><i class="fas fa-question-circle"></i>FAQ</a>
-            <a href="#twitter"><i class="fab fa-twitter"></i>Twitter</a>
-            <a href="#telegram"><i class="fab fa-telegram-plane"></i>Telegram</a>
-            <a href="#invite-post"><i class="fas fa-envelope-open-text"></i>Invite Post</a>
-            <a href="#check-posts"><i class="fas fa-check-circle"></i>Check Posts</a>
-        </div>
-    </div>
 
     <!-- Main Content -->
     <div class="content">
@@ -221,95 +145,10 @@
     </div>
 
     <script>
-        // Toggle navigation links
-        document.getElementById('menu-icon').addEventListener('click', function() {
-            const navLinks = document.getElementById('nav-links');
-            if (navLinks.style.display === 'block') {
-                navLinks.style.display = 'none';
-            } else {
-                navLinks.style.display = 'block';
-            }
-        });
-
         // Initial countdown time in seconds
         let countdownTime = 300; // 5 minutes (adjust as needed)
 
         // Function to update the countdown timer
         function updateCountdown() {
             let hours = Math.floor(countdownTime / 3600);
-            let minutes = Math.floor((countdownTime % 3600) / 60);
-            let seconds = countdownTime % 60;
-
-            // Format hours, minutes, and seconds to have two digits
-            hours = hours < 10 ? "0" + hours : hours;
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            document.getElementById("countdown-timer").innerText = `${hours}:${minutes}:${seconds}`;
-
-            // Decrement the countdown time
-            if (countdownTime > 0) {
-                countdownTime--;
-            } else {
-                clearInterval(timerInterval);
-                document.getElementById("countdown-timer").innerText = "Auction Ended!";
-            }
-        }
-
-        // Start the countdown timer
-        const timerInterval = setInterval(updateCountdown, 1000);
-
-        // Bid quantity management
-        const bidQuantityInput = document.getElementById('bid-quantity');
-        const decreaseBidButton = document.getElementById('decrease-bid');
-        const increaseBidButton = document.getElementById('increase-bid');
-
-        let bidQuantity = 1;
-
-        function updateBidQuantity(value) {
-            value = parseInt(value);
-            if (isNaN(value) || value < 1) {
-                bidQuantity = 1;
-            } else {
-                bidQuantity = value;
-            }
-            bidQuantityInput.value = bidQuantity;
-        }
-
-        decreaseBidButton.addEventListener('click', function() {
-            updateBidQuantity(bidQuantity - 1);
-        });
-
-        increaseBidButton.addEventListener('click', function() {
-            updateBidQuantity(bidQuantity + 1);
-        });
-
-        bidQuantityInput.addEventListener('input', function() {
-            updateBidQuantity(bidQuantityInput.value);
-        });
-
-        // Add event listener to the "Place Bid" button
-        const placeBidButton = document.getElementById('place-bid-button');
-        placeBidButton.addEventListener('click', function() {
-            // Validate bid quantity before placing bid
-            if (isNaN(bidQuantity) || bidQuantity < 1) {
-                alert('Please enter a valid number of bids.');
-                updateBidQuantity(1);
-                return;
-            }
-
-            // Add 60 seconds per bid to the countdown
-            countdownTime += 60 * bidQuantity;
-
-            // Add the bouncing effect
-            placeBidButton.classList.add('bouncing');
-            setTimeout(() => {
-                placeBidButton.classList.remove('bouncing');
-            }, 500); // Duration of the bounce animation
-
-            // Reset bid quantity to 1
-            updateBidQuantity(1);
-        });
-    </script>
-</body>
-</html>
+           
