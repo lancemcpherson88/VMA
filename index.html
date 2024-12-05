@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Money Auction</title>
     <!-- Include Font Awesome for icons -->
     <link
@@ -25,30 +24,33 @@
         .header {
             background-color: rgba(0, 0, 0, 0.9);
             overflow: hidden;
-            padding: 10px 0;
+            padding: 10px 20px;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 100;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
-        .header .menu-icon {
+        .logo {
             color: #fff;
-            text-align: center;
-            padding: 14px 16px;
+            font-size: 24px;
             text-decoration: none;
-            display: inline-block;
-            font-size: 30px;
-            cursor: pointer;
+            font-weight: bold;
         }
-        .header .menu-icon:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+        .menu-icon {
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+            display: block;
         }
         .nav-links {
             display: none;
             flex-direction: column;
             background-color: rgba(0, 0, 0, 0.95);
-            position: absolute;
+            position: fixed;
             top: 60px;
             width: 100%;
             left: 0;
@@ -56,21 +58,33 @@
         .nav-links a {
             color: #fff;
             text-align: center;
-            padding: 12px 16px;
+            padding: 15px;
             text-decoration: none;
-            display: block;
-            font-size: 20px;
+            font-size: 18px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         .nav-links a:hover {
             background-color: rgba(255, 255, 255, 0.2);
-            color: #fff;
         }
-        .nav-links i {
-            margin-right: 8px;
+        /* Hide menu icon on larger screens */
+        @media (min-width: 600px) {
+            .menu-icon {
+                display: none;
+            }
+            .nav-links {
+                display: flex !important;
+                position: static;
+                flex-direction: row;
+                background-color: transparent;
+                width: auto;
+            }
+            .nav-links a {
+                border: none;
+                padding: 14px 20px;
+            }
         }
         .content {
-            padding: 120px 20px 20px;
+            padding: 100px 20px 20px;
         }
         .btn {
             background-color: #ff7e5f;
@@ -133,35 +147,19 @@
         .bid-input input:focus {
             border-color: #ff7e5f;
         }
-        /* Media query for larger screens */
-        @media (min-width: 600px) {
-            .nav-links {
-                display: flex !important;
-                background-color: transparent;
-                position: static;
-                flex-direction: row;
-                justify-content: center;
-            }
-            .nav-links a {
-                display: inline-block;
-                border: none;
-            }
-            .header .menu-icon {
-                display: none;
-            }
-        }
     </style>
 </head>
 <body>
     <!-- Header with navigation links -->
     <div class="header">
-        <a href="javascript:void(0);" class="menu-icon" id="menu-icon"><i class="fas fa-bars"></i></a>
+        <a href="#" class="logo">The Money Auction</a>
+        <i class="fas fa-bars menu-icon" id="menu-icon"></i>
         <div class="nav-links" id="nav-links">
-            <a href="#faq"><i class="fas fa-question-circle"></i>FAQ</a>
-            <a href="#twitter"><i class="fab fa-twitter"></i>Twitter</a>
-            <a href="#telegram"><i class="fab fa-telegram-plane"></i>Telegram</a>
-            <a href="#invite-post"><i class="fas fa-envelope-open-text"></i>Invite Post</a>
-            <a href="#check-posts"><i class="fas fa-check-circle"></i>Check Posts</a>
+            <a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a>
+            <a href="#twitter"><i class="fab fa-twitter"></i> Twitter</a>
+            <a href="#telegram"><i class="fab fa-telegram-plane"></i> Telegram</a>
+            <a href="#invite-post"><i class="fas fa-envelope-open-text"></i> Invite Post</a>
+            <a href="#check-posts"><i class="fas fa-check-circle"></i> Check Posts</a>
         </div>
     </div>
 
@@ -193,19 +191,10 @@
     </div>
 
     <script>
-        // Toggle navigation links and icon
+        // Toggle navigation links
         document.getElementById('menu-icon').addEventListener('click', function() {
             const navLinks = document.getElementById('nav-links');
-            const menuIcon = document.getElementById('menu-icon').querySelector('i');
-            if (navLinks.style.display === 'block') {
-                navLinks.style.display = 'none';
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
-            } else {
-                navLinks.style.display = 'block';
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-times');
-            }
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
         });
 
         // Initial countdown time in seconds
