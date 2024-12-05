@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta and Title -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Money Auction</title>
@@ -17,17 +18,67 @@
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 0;
-            background-color: #f5f5f5; /* Light background */
-            color: #333; /* Dark text color */
+            background-color: #f5f5f5;
+            color: #333;
         }
         h1, h2, h3 {
             margin: 10px 0;
         }
+        /* Header Styles */
+        .header {
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+        .header .menu-icon {
+            color: #0074D9;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .nav-links {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+        .nav-links a {
+            color: #fff;
+            font-size: 36px;
+            text-align: center;
+            padding: 16px;
+            text-decoration: none;
+        }
+        .nav-links a:hover {
+            color: #FFDC00;
+        }
+        .nav-links i {
+            margin-right: 8px;
+        }
+        .close-menu-icon {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: #fff;
+            text-decoration: none;
+        }
+        .close-menu-icon:hover {
+            color: #FFDC00;
+        }
         .content {
-            padding: 60px 20px 20px; /* Adjusted padding due to removed header */
+            padding: 80px 20px 20px; /* Adjusted padding for fixed menu icon */
         }
         .btn {
-            background-color: #FFDC00; /* DealDash Yellow */
+            background-color: #FFDC00;
             color: #333;
             padding: 12px 24px;
             border: none;
@@ -40,12 +91,12 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         .btn:hover {
-            background-color: #FF851B; /* Slightly darker yellow/orange */
+            background-color: #FF851B;
         }
         #countdown-timer {
             font-size: 32px;
             font-weight: bold;
-            color: #FF4136; /* Red color for urgency */
+            color: #FF4136;
         }
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
@@ -116,6 +167,20 @@
     </style>
 </head>
 <body>
+    <!-- Header with menu icon -->
+    <div class="header">
+        <a href="javascript:void(0);" class="menu-icon" id="menu-icon"><i class="fas fa-bars"></i></a>
+    </div>
+
+    <!-- Overlay Menu -->
+    <div class="nav-links" id="nav-links">
+        <a href="javascript:void(0);" class="close-menu-icon" id="close-menu-icon"><i class="fas fa-times"></i></a>
+        <a href="#faq"><i class="fas fa-question-circle"></i>FAQ</a>
+        <a href="#twitter"><i class="fab fa-twitter"></i>Twitter</a>
+        <a href="#telegram"><i class="fab fa-telegram-plane"></i>Telegram</a>
+        <a href="#invite-post"><i class="fas fa-envelope-open-text"></i>Invite Post</a>
+        <a href="#check-posts"><i class="fas fa-check-circle"></i>Check Posts</a>
+    </div>
 
     <!-- Main Content -->
     <div class="content">
@@ -145,10 +210,95 @@
     </div>
 
     <script>
+        // Toggle overlay menu
+        document.getElementById('menu-icon').addEventListener('click', function() {
+            document.getElementById('nav-links').style.display = 'flex';
+        });
+
+        // Close overlay menu
+        document.getElementById('close-menu-icon').addEventListener('click', function() {
+            document.getElementById('nav-links').style.display = 'none';
+        });
+
         // Initial countdown time in seconds
         let countdownTime = 300; // 5 minutes (adjust as needed)
 
         // Function to update the countdown timer
         function updateCountdown() {
             let hours = Math.floor(countdownTime / 3600);
-           
+            let minutes = Math.floor((countdownTime % 3600) / 60);
+            let seconds = countdownTime % 60;
+
+            // Format hours, minutes, and seconds to have two digits
+            hours = hours < 10 ? "0" + hours : hours;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            document.getElementById("countdown-timer").innerText = `${hours}:${minutes}:${seconds}`;
+
+            // Decrement the countdown time
+            if (countdownTime > 0) {
+                countdownTime--;
+            } else {
+                clearInterval(timerInterval);
+                document.getElementById("countdown-timer").innerText = "Auction Ended!";
+            }
+        }
+
+        // Start the countdown timer
+        const timerInterval = setInterval(updateCountdown, 1000);
+
+        // Bid quantity management
+        const bidQuantityInput = document.getElementById('bid-quantity');
+        const decreaseBidButton = document.getElementById('decrease-bid');
+        const increaseBidButton = document.getElementById('increase-bid');
+
+        let bidQuantity = 1;
+
+        function updateBidQuantity(value) {
+            value = parseInt(value);
+            if (isNaN(value) || value < 1) {
+                bidQuantity = 1;
+            } else {
+                bidQuantity = value;
+            }
+            bidQuantityInput.value = bidQuantity;
+        }
+
+        decreaseBidButton.addEventListener('click', function() {
+            updateBidQuantity(bidQuantity - 1);
+        });
+
+        increaseBidButton.addEventListener('click', function() {
+            updateBidQuantity(bidQuantity + 1);
+        });
+
+        bidQuantityInput.addEventListener('input', function() {
+            updateBidQuantity(bidQuantityInput.value);
+        });
+
+        // Add event listener to the "Place Bid" button
+        const placeBidButton = document.getElementById('place-bid-button');
+        placeBidButton.addEventListener('click', function() {
+            // Validate bid quantity before placing bid
+            if (isNaN(bidQuantity) || bidQuantity < 1) {
+                alert('Please enter a valid number of bids.');
+                updateBidQuantity(1);
+                return;
+            }
+
+            // Add 60 seconds per bid to the countdown
+            countdownTime += 60 * bidQuantity;
+
+            // Add the bouncing effect
+            placeBidButton.classList.add('bouncing');
+            setTimeout(() => {
+                placeBidButton.classList.remove('bouncing');
+            }, 500); // Duration of the bounce animation
+
+            // Reset bid quantity to 1
+            updateBidQuantity(1);
+        });
+    </script>
+</body>
+</html>
