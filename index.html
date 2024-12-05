@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Money Auction</title>
     <!-- Include Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+GNRlR9eAqlFng3BlFuI6UbN35JFPhrDhqc8F6t" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-d4B3bd3eI0j0RafjaKH0QPrNwgQJ9iNkrm4E7V6R1yj0LzIK0xKwZ63B+/eVnF9hKdOQQ1jQk7/sfRsnx0KjQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,7 +23,7 @@
         }
         /* Header Styles */
         .header {
-            background-color: rgba(0, 0, 0, 0.8); /* Darker and transparent */
+            background-color: rgba(0, 0, 0, 0.9); /* Darker and more opaque */
             overflow: hidden;
             padding: 10px 0;
             position: fixed; /* Make the header fixed */
@@ -32,7 +38,7 @@
             padding: 14px 16px;
             text-decoration: none;
             display: inline-block;
-            font-size: 24px;
+            font-size: 30px; /* Increased font size */
             cursor: pointer;
         }
         .header .menu-icon:hover {
@@ -41,7 +47,7 @@
         .nav-links {
             display: none; /* Hide navigation links by default */
             flex-direction: column;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             position: absolute;
             top: 60px; /* Height of the header */
             width: 100%;
@@ -53,7 +59,7 @@
             padding: 12px 16px;
             text-decoration: none;
             display: block;
-            font-size: 17px;
+            font-size: 20px; /* Increased font size */
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         .nav-links a:hover {
@@ -64,7 +70,7 @@
             margin-right: 8px;
         }
         .content {
-            padding: 100px 20px 20px; /* Adjusted padding to account for fixed header */
+            padding: 120px 20px 20px; /* Adjusted padding to account for fixed header */
         }
         .btn {
             background-color: #ff7e5f;
@@ -130,7 +136,7 @@
         /* Media query for larger screens */
         @media (min-width: 600px) {
             .nav-links {
-                display: flex;
+                display: flex !important;
                 background-color: transparent;
                 position: static;
                 flex-direction: row;
