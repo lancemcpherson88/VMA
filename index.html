@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta and Title -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LAST MAN LEFT</title>
     <style>
-        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -24,11 +22,8 @@
             border: none;
             cursor: pointer;
             font-size: 18px;
-            position: relative;
-            transition: background-color 0.3s;
             border-radius: 4px;
             font-weight: bold;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         .btn:hover {
             background-color: #FF851B;
@@ -51,7 +46,6 @@
             cursor: pointer;
             width: 40px;
             height: 40px;
-            transition: background-color 0.3s;
             border-radius: 4px;
         }
         .bid-input button:hover {
@@ -66,9 +60,6 @@
             outline: none;
             margin: 0 5px;
             border-radius: 4px;
-        }
-        .bid-input input:focus {
-            border-color: #0074D9;
         }
         h1 {
             color: #0074D9;
@@ -92,11 +83,10 @@
     </style>
 </head>
 <body>
-    <!-- Main Content -->
     <div class="content">
         <h1>LAST MAN LEFT</h1>
         <h3>The Pot</h3>
-        <h2 id="pot-amount">$100.000</h2>
+        <h2 id="pot-amount">$750.000</h2>
         <h3>Your Countdown</h3>
         
         <p><span id="countdown-timer">Loading...</span></p>
@@ -122,7 +112,7 @@
     <script>
         // Initial countdown time in seconds
         let countdownTime = 300; // 5 minutes
-        let potAmount = 100.000; // Starting pot
+        let potAmount = 750.000; // Starting pot
         const potIncrement = 0.005; // Increment for each bid
 
         const potAmountElement = document.getElementById('pot-amount');
