@@ -117,7 +117,6 @@
         .content {
             padding: 80px 20px 20px; /* Adjusted padding for fixed header */
         }
-        /* Rest of your styles */
         .btn {
             background-color: #FFDC00;
             color: #333;
@@ -171,7 +170,6 @@
         .bid-input input:focus {
             border-color: #0074D9;
         }
-        /* Additional Styles */
         h1 {
             color: #0074D9;
             font-size: 36px;
@@ -218,7 +216,7 @@
     <div class="content">
         <h1>LAST MAN LEFT</h1>
         <h3>The Pot</h3>
-        <h2>$100</h2>
+        <h2 id="pot-amount">$100</h2>
         <h3>Your Countdown</h3>
         
         <p><span id="countdown-timer">Loading...</span></p>
@@ -266,6 +264,15 @@
 
         // Initial countdown time in seconds
         let countdownTime = 300; // 5 minutes (adjust as needed)
+
+        // Pot amount
+        let potAmount = 100; // starting pot
+        const potAmountElement = document.getElementById('pot-amount');
+
+        // Function to update pot display
+        function updatePotDisplay() {
+            potAmountElement.innerText = `$${potAmount}`;
+        }
 
         // Function to update the countdown timer
         function updateCountdown() {
@@ -333,6 +340,10 @@
 
             // Add 60 seconds per bid to the countdown
             countdownTime += 60 * bidQuantity;
+
+            // Increase the pot amount by $1 per bid (adjust this logic as needed)
+            potAmount += 1 * bidQuantity;
+            updatePotDisplay();
 
             // Reset bid quantity to 1
             updateBidQuantity(1);
