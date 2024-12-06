@@ -187,6 +187,11 @@
             max-width: 800px;
             margin: 10px auto;
         }
+
+        /* New class to style the last decimal digit smaller */
+        .small-decimal {
+            font-size: 0.75em;
+        }
     </style>
 </head>
 <body>
@@ -268,8 +273,20 @@
 
         // Function to update pot display
         function updatePotDisplay() {
-            potAmountElement.innerText = `$${potAmount.toFixed(3)}`;
+            const potStr = potAmount.toFixed(3); 
+            const parts = potStr.split('.');
+            const integerPart = parts[0];
+            const decimalPart = parts[1]; // e.g. "000"
+
+            // Wrap the last decimal digit in a span
+            const firstTwoDecimals = decimalPart.slice(0, 2);
+            const lastDecimal = decimalPart.slice(-1);
+
+            potAmountElement.innerHTML = `$${integerPart}.${firstTwoDecimals}<span class="small-decimal">${lastDecimal}</span>`;
         }
+
+        // Call once to initialize
+        updatePotDisplay();
 
         // Function to update the countdown timer
         function updateCountdown() {
@@ -334,7 +351,7 @@
             // Add 60 seconds per bid to the countdown
             countdownTime += 60 * bidQuantity;
 
-            // Increase the pot amount by $0.001 per bid
+            // Increase the pot amount by $0.005 per bid
             potAmount += 0.005 * bidQuantity;
             updatePotDisplay();
 
