@@ -5,112 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LAST MAN LEFT</title>
-    <!-- Include Font Awesome for icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-d4B3bd3eI0j0RafjaKH0QPrNwgQJ9iNkrm4E7V6R1yj0LzIK0xKwZ63B+/eVnF9hKdOQQ1jQk7/sfRsnx0KjQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
     <style>
-        /* Reset default margins and paddings */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             background-color: #f5f5f5;
             color: #333;
             scroll-behavior: smooth;
-        }
-        /* Header Styles */
-        .header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            background-color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            z-index: 1000;
-        }
-        .header .logo a {
-            text-decoration: none;
-            color: #333;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .menu-icon {
-            cursor: pointer;
-        }
-        .menu-icon i {
-            font-size: 28px;
-            color: #000;
-        }
-        .nav-links {
-            position: absolute;
-            top: 60px;
-            right: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            display: none;
-            flex-direction: column;
-            min-width: 150px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            z-index: 999;
-        }
-        .nav-links ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .nav-links ul li {
-            border-bottom: 1px solid #eee;
-        }
-        .nav-links ul li a {
-            color: #333;
-            padding: 10px 15px;
-            display: block;
-            text-decoration: none;
-        }
-        .nav-links ul li a:hover {
-            background-color: #f5f5f5;
-        }
-        @media (min-width: 768px) {
-            .menu-icon {
-                display: none;
-            }
-            .nav-links {
-                position: static;
-                display: flex !important;
-                background-color: transparent;
-                flex-direction: row;
-                align-items: center;
-                border: none;
-                box-shadow: none;
-            }
-            .nav-links ul {
-                display: flex;
-            }
-            .nav-links ul li {
-                border: none;
-                margin-left: 20px;
-            }
-            .nav-links ul li a {
-                padding: 0;
-                color: #333;
-            }
-            .nav-links ul li a:hover {
-                background-color: transparent;
-                color: #0074D9;
-            }
         }
         .content {
             padding: 80px 20px 20px;
@@ -190,25 +92,6 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="logo">
-            <a href="#">LAST MAN LEFT</a>
-        </div>
-        <div class="menu-icon" id="menu-icon">
-            <i class="fas fa-bars">=</i>
-        </div>
-        <nav class="nav-links" id="nav-links">
-            <ul>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#twitter">Twitter</a></li>
-                <li><a href="#telegram">Telegram</a></li>
-                <li><a href="#invite-post">Invite Post</a></li>
-                <li><a href="#check-posts">Check Posts</a></li>
-            </ul>
-        </nav>
-    </header>
-
     <!-- Main Content -->
     <div class="content">
         <h1>LAST MAN LEFT</h1>
@@ -237,47 +120,24 @@
     </div>
 
     <script>
-        // Toggle dropdown menu
-        document.getElementById('menu-icon').addEventListener('click', function() {
-            const navLinks = document.getElementById('nav-links');
-            if (navLinks.style.display === 'flex') {
-                navLinks.style.display = 'none';
-            } else {
-                navLinks.style.display = 'flex';
-            }
-        });
-
-        // Close the dropdown when clicking outside
-        document.addEventListener('click', function(event) {
-            const navLinks = document.getElementById('nav-links');
-            const menuIcon = document.getElementById('menu-icon');
-            const isClickInsideMenu = navLinks.contains(event.target);
-            const isClickOnMenuIcon = menuIcon.contains(event.target);
-
-            if (!isClickInsideMenu && !isClickOnMenuIcon && window.innerWidth < 768) {
-                navLinks.style.display = 'none';
-            }
-        });
-
         // Initial countdown time in seconds
-        let countdownTime = 300; // 5 minutes (adjust as needed)
+        let countdownTime = 300; // 5 minutes
+        let potAmount = 100.000; // Starting pot
+        const potIncrement = 0.005; // Increment for each bid
 
-        // Pot amount
-        let potAmount = 100.000; // starting pot
         const potAmountElement = document.getElementById('pot-amount');
+        const bidQuantityInput = document.getElementById('bid-quantity');
+        const placeBidButton = document.getElementById('place-bid-button');
 
-        // Function to update pot display
         function updatePotDisplay() {
             potAmountElement.innerText = `$${potAmount.toFixed(3)}`;
         }
 
-        // Function to update the countdown timer
         function updateCountdown() {
             let hours = Math.floor(countdownTime / 3600);
             let minutes = Math.floor((countdownTime % 3600) / 60);
             let seconds = countdownTime % 60;
 
-            // Format hours, minutes, and seconds
             hours = hours < 10 ? "0" + hours : hours;
             minutes = minutes < 10 ? "0" + minutes : minutes;
             seconds = seconds < 10 ? "0" + seconds : seconds;
@@ -294,52 +154,39 @@
 
         const timerInterval = setInterval(updateCountdown, 1000);
 
-        // Bid quantity management
-        const bidQuantityInput = document.getElementById('bid-quantity');
-        const decreaseBidButton = document.getElementById('decrease-bid');
-        const increaseBidButton = document.getElementById('increase-bid');
-
-        let bidQuantity = 1;
-
-        function updateBidQuantity(value) {
-            value = parseInt(value, 10);
-            if (isNaN(value) || value < 1) {
-                bidQuantity = 1;
-            } else {
-                bidQuantity = value;
-            }
+        // Adjust bid quantity
+        document.getElementById('decrease-bid').addEventListener('click', () => {
+            let bidQuantity = parseInt(bidQuantityInput.value, 10) || 1;
+            if (bidQuantity > 1) bidQuantity--;
             bidQuantityInput.value = bidQuantity;
-        }
-
-        decreaseBidButton.addEventListener('click', function() {
-            updateBidQuantity(bidQuantity - 1);
         });
 
-        increaseBidButton.addEventListener('click', function() {
-            updateBidQuantity(bidQuantity + 1);
+        document.getElementById('increase-bid').addEventListener('click', () => {
+            let bidQuantity = parseInt(bidQuantityInput.value, 10) || 1;
+            bidQuantity++;
+            bidQuantityInput.value = bidQuantity;
         });
 
-        bidQuantityInput.addEventListener('input', function() {
-            updateBidQuantity(bidQuantityInput.value);
-        });
-
-        const placeBidButton = document.getElementById('place-bid-button');
-        placeBidButton.addEventListener('click', function() {
+        bidQuantityInput.addEventListener('input', () => {
+            let bidQuantity = parseInt(bidQuantityInput.value, 10);
             if (isNaN(bidQuantity) || bidQuantity < 1) {
-                alert('Please enter a valid number of bids.');
-                updateBidQuantity(1);
-                return;
+                bidQuantityInput.value = 1;
             }
+        });
+
+        // Place bid and update pot
+        placeBidButton.addEventListener('click', () => {
+            let bidQuantity = parseInt(bidQuantityInput.value, 10) || 1;
 
             // Add 60 seconds per bid to the countdown
             countdownTime += 60 * bidQuantity;
 
-            // Increase the pot amount by $0.001 per bid
-            potAmount += 0.001 * bidQuantity;
+            // Increase the pot amount
+            potAmount += potIncrement * bidQuantity;
             updatePotDisplay();
 
-            // Reset bid quantity to 1
-            updateBidQuantity(1);
+            // Reset bid quantity
+            bidQuantityInput.value = 1;
         });
     </script>
 </body>
