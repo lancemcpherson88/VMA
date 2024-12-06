@@ -213,7 +213,7 @@
     <div class="content">
         <h1>LAST MAN LEFT</h1>
         <h3>The Pot</h3>
-        <h2 id="pot-amount">$100.000</h2>
+        <h2 id="pot-amount">$750.000</h2>
         <h3>Your Countdown</h3>
         
         <p><span id="countdown-timer">Loading...</span></p>
@@ -263,7 +263,7 @@
         let countdownTime = 300; // 5 minutes (adjust as needed)
 
         // Pot amount
-        let potAmount = 100.000; // starting pot
+        let potAmount = 750.000; // starting pot
         const potAmountElement = document.getElementById('pot-amount');
 
         // Function to update pot display
@@ -335,7 +335,7 @@
             countdownTime += 60 * bidQuantity;
 
             // Increase the pot amount by $0.001 per bid
-            potAmount += 0.001 * bidQuantity;
+            potAmount += 0.005 * bidQuantity;
             updatePotDisplay();
 
             // Reset bid quantity to 1
