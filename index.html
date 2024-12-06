@@ -52,11 +52,11 @@
         }
         .menu-icon i {
             font-size: 28px;
-            color: #000; /* Black lines */
+            color: #000;
         }
         .nav-links {
             position: absolute;
-            top: 60px; /* Adjust based on header height */
+            top: 60px;
             right: 20px;
             background-color: #fff;
             border: 1px solid #ccc;
@@ -83,7 +83,6 @@
         .nav-links ul li a:hover {
             background-color: #f5f5f5;
         }
-        /* Media Query for larger screens */
         @media (min-width: 768px) {
             .menu-icon {
                 display: none;
@@ -113,9 +112,8 @@
                 color: #0074D9;
             }
         }
-        /* Content Styles */
         .content {
-            padding: 80px 20px 20px; /* Adjusted padding for fixed header */
+            padding: 80px 20px 20px;
         }
         .btn {
             background-color: #FFDC00;
@@ -200,7 +198,6 @@
         <div class="menu-icon" id="menu-icon">
             <i class="fas fa-bars">=</i>
         </div>
-        <!-- Dropdown Menu -->
         <nav class="nav-links" id="nav-links">
             <ul>
                 <li><a href="#faq">FAQ</a></li>
@@ -216,7 +213,7 @@
     <div class="content">
         <h1>LAST MAN LEFT</h1>
         <h3>The Pot</h3>
-        <h2 id="pot-amount">$100.00</h2>
+        <h2 id="pot-amount">$100.000</h2>
         <h3>Your Countdown</h3>
         
         <p><span id="countdown-timer">Loading...</span></p>
@@ -266,12 +263,12 @@
         let countdownTime = 300; // 5 minutes (adjust as needed)
 
         // Pot amount
-        let potAmount = 100.00; // starting pot
+        let potAmount = 100.000; // starting pot
         const potAmountElement = document.getElementById('pot-amount');
 
         // Function to update pot display
         function updatePotDisplay() {
-            potAmountElement.innerText = `$${potAmount.toFixed(2)}`;
+            potAmountElement.innerText = `$${potAmount.toFixed(3)}`;
         }
 
         // Function to update the countdown timer
@@ -280,14 +277,13 @@
             let minutes = Math.floor((countdownTime % 3600) / 60);
             let seconds = countdownTime % 60;
 
-            // Format hours, minutes, and seconds to have two digits
+            // Format hours, minutes, and seconds
             hours = hours < 10 ? "0" + hours : hours;
             minutes = minutes < 10 ? "0" + minutes : minutes;
             seconds = seconds < 10 ? "0" + seconds : seconds;
 
             document.getElementById("countdown-timer").innerText = `${hours}:${minutes}:${seconds}`;
 
-            // Decrement the countdown time
             if (countdownTime > 0) {
                 countdownTime--;
             } else {
@@ -296,7 +292,6 @@
             }
         }
 
-        // Start the countdown timer
         const timerInterval = setInterval(updateCountdown, 1000);
 
         // Bid quantity management
@@ -307,7 +302,7 @@
         let bidQuantity = 1;
 
         function updateBidQuantity(value) {
-            value = parseInt(value);
+            value = parseInt(value, 10);
             if (isNaN(value) || value < 1) {
                 bidQuantity = 1;
             } else {
@@ -328,10 +323,8 @@
             updateBidQuantity(bidQuantityInput.value);
         });
 
-        // Add event listener to the "Place Bid" button
         const placeBidButton = document.getElementById('place-bid-button');
         placeBidButton.addEventListener('click', function() {
-            // Validate bid quantity before placing bid
             if (isNaN(bidQuantity) || bidQuantity < 1) {
                 alert('Please enter a valid number of bids.');
                 updateBidQuantity(1);
@@ -341,8 +334,8 @@
             // Add 60 seconds per bid to the countdown
             countdownTime += 60 * bidQuantity;
 
-            // Increase the pot amount by $0.01 per bid
-            potAmount += 0.01 * bidQuantity;
+            // Increase the pot amount by $0.001 per bid
+            potAmount += 0.001 * bidQuantity;
             updatePotDisplay();
 
             // Reset bid quantity to 1
