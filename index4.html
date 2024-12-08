@@ -290,6 +290,91 @@
         <p>It is a battle of the strongest will!</p>
     </div>
 
+
+
+  
+
+    <!-- Invite Friends Section -->
+    <div class="content" id="invite-friends-section">
+        <h2>Invite Friends & Earn Rewards</h2>
+        <p>Share your unique invite link with friends and earn <strong>100 free bids</strong> for each person who joins using your link!</p>
+        <p>By inviting others, you are automatically entered into the <strong>Inviter Contest</strong>. The prizes increase as the potential prize grows. Here’s how the inviters' rewards scale:</p>
+
+        <h3>If The Pot Reaches $10,000</h3>
+        <ul>
+            <li>Top Inviter & First Inviter: $1,000</li>
+        </ul>
+
+        <h3>If The Pot Reaches $100,000</h3>
+        <ul>
+            <li>Top Inviter & First Inviter: $10,000</li>
+            <li>Top 10 Inviters: $1,000</li>
+        </ul>
+
+        <h3>If The Pot Reaches $1,000,000 (1 Million)</h3>
+        <ul>
+            <li>Top Inviter & First Inviter: $100,000</li>
+            <li>Top 10 Inviters: $10,000</li>
+            <li>Top 100 Inviters: $1,000</li>
+        </ul>
+
+        <h3>If The Pot Reaches $10,000,000 (10 Million)</h3>
+        <ul>
+            <li>Top Inviter & First Inviter: $1,000,000</li>
+            <li>Top 10 Inviters: $100,000</li>
+            <li>Top 100 Inviters: $10,000</li>
+            <li>Top 1,000 Inviters: $1,000</li>
+        </ul>
+
+        <h3>If The Pot Reaches $100,000,000 (100 Million)</h3>
+        <ul>
+            <li>Top Inviter & First Inviter: $10,000,000</li>
+            <li>Top 10 Inviters: $1,000,000</li>
+            <li>Top 100 Inviters: $100,000</li>
+            <li>Top 1,000 Inviters: $10,000</li>
+            <li>Top 10,000 Inviters: $1,000</li>
+        </ul>
+
+        <h3>If The Pot Reaches $1,000,000,000 (1 Billion)</h3>
+        <ul>
+            <li>Top Inviter & First Inviter: $100,000,000</li>
+            <li>Top 10 Inviters: $10,000,000</li>
+            <li>Top 100 Inviters: $1,000,000</li>
+            <li>Top 1,000 Inviters: $100,000</li>
+            <li>Top 10,000 Inviters: $10,000</li>
+            <li>Top 100,000 Inviters: $1,000</li>
+        </ul>
+        <p>The more friends you invite, the better your chances to climb the leaderboard and win big as the pot grows!</p>
+        <p>Your unique invite link:</p>
+        <div style="background-color: #f5f5f5; padding: 10px; border-radius: 5px; display: inline-block;">
+            <strong id="invite-link"></strong>
+            <button id="copy-link" class="btn" style="margin-left: 10px;">Copy Link</button>
+        </div>
+    </div>
+
+    <script>
+        // Generate a random invite link
+        const generateInviteLink = () => {
+            const userId = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+            return `https://lastmanleft.com/invite/${userId}`;
+        };
+
+        // Display the invite link
+        const inviteLinkElement = document.getElementById('invite-link');
+        inviteLinkElement.textContent = generateInviteLink();
+
+        // Copy link functionality
+        const copyLinkButton = document.getElementById('copy-link');
+        copyLinkButton.addEventListener('click', () => {
+            const inviteLink = inviteLinkElement.textContent;
+            navigator.clipboard.writeText(inviteLink)
+                .then(() => alert('Invite link copied to clipboard!'))
+                .catch(() => alert('Failed to copy invite link. Please try again.'));
+        });
+    </script>
+
+    
+
    <!-- Full Pot Breakdown Section -->
 <div class="breakdown-section">
     <h2>Full Pot Breakdown</h2>
