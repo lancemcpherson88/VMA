@@ -1,83 +1,241 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Money Auction</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        h1, h3, h2 {
-            margin: 10px 0;
-        }
-        .btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .btn:hover {
-            background-color: #45a049;
-        }
-        #countdown-timer {
-            font-size: 24px;
-            font-weight: bold;
-        }
-    </style>
-</head>
+<html>
 <body>
-    <h1>LAST MAN LEFT</h1>
-    <h3>The Pot</h3>
-    <h2>$100</h2>
-    <h3>Your Countdown</h3>
     
-    <p><span id="countdown-timer">Loading...</span></p>
-    <button id="place-bid-button" class="btn">Place Time Bid To Add 30 Seconds</button>
-    <p>The last person with time left wins the constantly growing Pot, even if it grows to $1 billion!</p>
-    <p>The Pot grows every time a new bid is placed!</p>
-    <p>The last person with time left on their countdown wins the Pot for $1, even if it grows to $1 billion!</p>
-    <p>There is no luck or chance involved with Last Man Left.</p>
-    <p>Winning is simply a matter of resetting your countdown before it reaches 00:00:00 longer than everyone else!</p>
-    <p>It is a battle of the strongest will!</p>
+    
+    
+    
+  Last Man Left – Terms of Service
 
-    <script>
-        // Initial countdown time in seconds
-        let countdownTime = 300; // 5 minutes (adjust as needed)
+Effective Date: [Month Day, Year]
+Last updated: [Month Day, Year]
 
-        // Function to update the countdown timer
-        function updateCountdown() {
-            let minutes = Math.floor(countdownTime / 60);
-            let seconds = countdownTime % 60;
+1. Acceptance of Terms
 
-            // Format the timer to have two digits
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
+Welcome to Last Man Left! These Terms of Service (“Terms”) govern your access to and use of the Last Man Left website, mobile application, and services (collectively, the “Service”). By registering an account or participating in any auction on Last Man Left, you agree to be bound by these Terms and all applicable laws and regulations. If you do not agree with any of these Terms, do not use the Service.
 
-            document.getElementById("countdown-timer").innerText = `${minutes}:${seconds}`;
+Binding Agreement: These Terms constitute a legal agreement between you (“User” or “Bidder”) and Last Man Left Inc. (“Last Man Left,” “we,” “us,” or “our”). By using the Service, you represent that you have read, understood, and agree to these Terms. You also acknowledge our Privacy Policy (available on our website) which explains how we collect and use your data, and you agree to abide by any other rules or policies referenced in these Terms (such as auction rules, fees, or community guidelines).
 
-            // Decrement the countdown time
-            if (countdownTime > 0) {
-                countdownTime--;
-            } else {
-                clearInterval(timerInterval);
-                document.getElementById("countdown-timer").innerText = "Auction Ended!";
-            }
-        }
+2. Description of Service – Auction Platform
 
-        // Start the countdown timer
-        const timerInterval = setInterval(updateCountdown, 1000);
+Auction-Based Platform: Last Man Left is an online auction platform where users bid for the chance to win items, prizes, or other rewards through a pay-per-bid auction model ￼. The Service operates a bidding fee auction (commonly known as a “penny auction”), in which participants purchase the right to place bids on ongoing auctions. Each bid placed is incremental – it increases the auction’s current price by a small amount (for example, $0.01) and may extend the remaining time of the auction by a preset period (e.g. a few seconds) ￼. When an auction timer expires with no new bids, the last highest bidder (“Last Man Left”) wins the item or prize and is obligated to pay the final auction price.
 
-        // Add event listener to the "Place Bid" button
-        document.getElementById('place-bid-button').addEventListener('click', function() {
-            // Add 30 seconds to the countdown
-            countdownTime += 30;
-            //alert("Bid placed! 30 seconds added to your countdown.");
-        });
-    </script>
+Pay-Per-Bid Structure: Unlike traditional auctions (e.g. those where only the winner pays), in penny auctions each bid costs a non-refundable fee ￼. You must purchase bids (also called “Bid Credits”) in advance or as needed to participate. Every time you place a bid in an auction, the cost of that bid is deducted from your bid balance (or charged to your account) whether you win or not. This means that if you do not win an auction, the money spent on bids is not returned or refunded. Only the final winning bidder will have the right to purchase the auction item at the final price, and all other bidders will have paid the fees for bids they placed without receiving the item ￼. By using the Service, you understand and accept the risk that you may spend money on bids and not win any reward, item, or prize ￼.
+
+Not Gambling: Last Man Left is an auction and strategy-based purchasing platform, not a game of chance or lottery. Bids are fees for participating in the auction and are not wagers pooled toward a prize ￼. Because the outcome is determined by bidding strategy, timing, and user decisions (and not random chance alone), penny auctions are generally not considered gambling under U.S. law ￼. By using the Service, you acknowledge that you are participating in an auction-style commerce platform and not in a lottery or gambling activity.
+
+3. Eligibility and User Account
+
+Age Requirement: The Service is intended solely for users 18 years of age or older. By registering and using Last Man Left, you represent and warrant that you are at least 18 years old (or the age of legal majority in your jurisdiction) ￼, capable of entering into a binding contract, and not prohibited from using the Service under any applicable law.
+
+Location Restrictions: Last Man Left is currently available to residents of the United States (and any additional jurisdictions explicitly permitted on our site). We do not permit use of the Service in any state or locality where penny auctions are prohibited by law or where Last Man Left lacks any required license to operate. For example, certain states require online auction operators (including penny auction websites) to obtain auctioneer licenses ￼. We comply with such state laws where applicable, and we may restrict or block access to the Service for users in jurisdictions like these unless and until proper licensing or compliance measures are in place. It is your responsibility to follow your local laws. If you reside in a location where pay-per-bid auctions are illegal or restricted, do not use the Service. Participation is void where prohibited by law.
+
+One Account Per Person: You may create only one account with Last Man Left, and it must be in your real name with accurate, current information. You agree to provide truthful information during registration and to keep your account information updated. You are responsible for maintaining the confidentiality of your account login credentials and for all activities that occur under your account. Sharing accounts or creating multiple accounts for one individual is strictly prohibited, as it can undermine fair play. If we detect duplicate or false accounts, or other attempts to circumvent this rule, we reserve the right to suspend or terminate those accounts.
+
+Account Security: You are responsible for restricting access to your account and you agree to notify us immediately at [support email/contact] if you suspect any unauthorized use or security breach. We are not liable for any loss or damage arising from your failure to secure your account credentials.
+
+Eligibility Affirmation: By participating in any auction or purchasing bids, you further affirm that: (a) you have not been suspended or removed from Last Man Left before; (b) you are not a company insider, employee, or relative of an employee barred from participation (see Section 7 on fairness); and (c) your use of the Service will comply with all applicable laws and these Terms.
+
+4. How the Auctions Work
+
+Bid Credits: To participate in auctions, you must purchase bid credits (“Bids”) from Last Man Left. Each Bid allows you to place one incrementing bid in an auction. Bids may be sold in packages (e.g., 100 Bids for $X). All bid purchases are final (see Section 10 on Refunds). Bids have no cash value (they are not currency or legal tender), are non-transferable, and may expire if not used within a period (any expiration will be clearly disclosed at purchase).
+
+Auction Mechanics: Auctions on Last Man Left typically start at a price of $0.00. Each placed bid will increase the current price by a fixed increment (usually $0.01, i.e. one penny) ￼ and may add additional time to the auction clock (e.g. each bid adds 10 seconds). The auction’s countdown timer is displayed during the auction. When a bid is placed, the timer resets to give others a chance to bid higher. If no new bid is placed before the timer runs out, the auction ends. The last person to have placed a bid is the winner and has the right (and obligation) to purchase the item or prize at the final auction price.
+
+Winning an Auction: If you are the highest (last) bidder when an auction closes, you will be notified that you have won. As the winner, you must pay the final auction price for the item (plus any disclosed shipping, handling, or applicable taxes) within the timeframe specified (usually [X] days) to claim the item. The final price is typically much lower than the true retail value of the item, but remember you have also spent bids to win. Failure to remit payment for a won auction (or to provide required information for prize delivery) may result in forfeiture of the win and possibly suspension of your account. We reserve the right to then offer the item to another bidder (for example, the second-highest bidder) or to re-list the item in a new auction, at our discretion.
+
+Losing an Auction: If you do not win an auction, you will not receive any item/prize and any bids you placed in that auction are not returned. Those are the fees you paid for the opportunity to bid, as is the nature of penny auctions. There is no consolation prize for losing bidders (unless explicitly stated otherwise for a particular auction or promotion). Please bid carefully and within your budget; Last Man Left is not responsible for money spent on bids by users who do not ultimately win an item.
+
+“Bid for Time” Auctions: In some cases, Last Man Left may offer special auction formats (such as “bid for time” competitions or other games). In such formats, the prize might be a cash pot, time-based reward, or other benefit instead of a physical product. The specific rules for any special format will be described in the auction’s details. Nonetheless, all core principles remain: you pay for each bid, time is extended with each bid, and the last eligible bidder or “last man standing” when the event ends will win the stated prize. All Terms herein (fees, obligations, fair practices, etc.) apply equally to any variant auction unless otherwise stated.
+
+Transparency and Information: We strive to make the auction process transparent. During an auction, you will typically see the current price, the remaining time, and possibly the username of the current highest bidder. We may also display the number of bids you have placed, and in some cases general information like how many total bids have been placed by all users. (However, we do not typically disclose to other users exactly how many bids each individual has expended, to protect user privacy and strategy.) All fees and costs (such as bid costs, shipping fees, etc.) for each auction or item are either fixed or will be clearly disclosed. If you have any questions about how a particular auction works or what charges may apply, contact our support before participating.
+
+5. Fees, Payments, and Purchase Terms
+
+Bid Purchase Fees: To place bids, you must purchase Bids from us. The price for Bid packages will be clearly shown on the purchase page (for example, $0.10 per bid, subject to bulk discounts or promotions). You agree to pay all charges for Bids or other services ordered through your account, including any applicable taxes. Charges will be made via the payment method you provide (credit card, PayPal, etc.), and you authorize us to charge your chosen payment method for the amounts indicated at checkout. All prices are in U.S. Dollars unless stated otherwise.
+
+No Fee to Just Register: Creating an account is generally free. We do not charge any fee just to sign up or maintain an account, apart from your voluntary bid purchases. (If we ever offer a membership program or subscription with fees, that will be opt-in and clearly explained—users will not be unknowingly charged upon registration ￼.) Some promotions may offer free bids or bonus credits for signing up; any such offers will be transparently communicated and truly free of charge.
+
+Non-Refundable Bids: All Bid purchases are final and non-refundable once your account is credited, except where required by law or explicitly permitted in these Terms (see Section 10 on Refund Policy). This means if you buy a package of 100 bids and later decide you no longer want to participate, you may not be entitled to a refund for unused bids. Do not purchase more bids than you are willing to use. We may, in our sole discretion, honor a refund request for unused bids in exceptional cases (for example, a first-time user who purchased a package and did not use any bids may request an account closure and refund within a short period). However, such exceptions are not guaranteed and are subject to our policies and applicable laws.
+
+Auction Final Price Payment: If you win an auction, you must pay the final auction price for the item. This payment is separate from and in addition to the bids you spent. The final price will be charged to your registered payment method once you confirm the purchase (or it may be automatically charged if you’ve agreed to that). If applicable, you will also be responsible for shipping and handling fees and any sales or use taxes due on the sale. All such fees will be disclosed in the auction listing or winner notification. We aim to keep shipping fees reasonable and will list them upfront whenever possible.
+
+Bid Account Balance: Bids you purchase will appear as a credit balance in your account. When you place a bid, the appropriate number of credits (usually one per bid) will be deducted immediately, regardless of outcome. You are responsible for ensuring you have sufficient bid credits to participate; if you run out of bids, further bidding will not be accepted until you purchase more. We are not liable for any loss of an auction due to your failure to maintain enough bid credits in your account.
+
+Promotional Bids and Bonuses: Last Man Left may occasionally credit you with free or bonus bids (for example, as a sign-up bonus, reward, or compensation). Such bids will be identified in your account and may be subject to special rules (e.g., they might expire after a certain date, or cannot be withdrawn for cash value). Promotional bids have no cash value and cannot be sold or transferred. If we suspect abuse of any promotion (such as creating multiple accounts to claim free bids), we may revoke those bids and take appropriate action (see Section 7 on Prohibited Conduct).
+
+Fee Transparency: We are committed to transparency about all costs of using our Service. You will always be informed of the price of bids, the rules of any fees, and the obligations of winners to pay final prices, before you commit to spending money or entering an auction. There are no hidden charges. If you notice any fee or charge that you do not understand, please contact customer support for clarification. By proceeding with a purchase or bid, you acknowledge that you understand and accept the fees involved.
+
+6. User Obligations and Auction Rules
+
+By participating on Last Man Left, you agree to follow our auction rules and to act in good faith toward other bidders. Violation of these rules may result in sanctions including bid forfeiture, account suspension, or termination.
+
+Obligation to Pay if You Win: If you win an auction, you have a binding obligation to pay for the item/prize at the final auction price, plus any stated fees (shipping, taxes, etc.). Placing a bid is a commitment to purchase the item for the bid price if you end up being the final highest bidder. Do not bid if you are not prepared to purchase the item. Failure to complete a purchase after winning may be considered a breach of this contract and could result in loss of your right to the item, forfeiture of bids, and possible account suspension. We may also charge a restocking or cancellation fee or deduct a certain number of bids from your account as a penalty (where permitted by law) to compensate for the disruption of the auction.
+
+No Bid Retraction: Once placed, a bid cannot be retracted or canceled. The platform is designed to execute bids in real-time, and each bid affects the auction outcome for all participants. Because each bid has a fee and can influence others’ decisions, allowing retraction would undermine the integrity of the auction. Think carefully before bidding. We are not responsible for accidental bids or if you change your mind; the bids (and any associated fees) will not be returned.
+
+Auction Interference Prohibited: You must not interfere with the normal progression of any auction. This includes refraining from any behavior that artificially manipulates the auction’s course outside of normal bidding. Prohibited behaviors include, but are not limited to:
+	Collusion: Working with other bidders (whether users you know or automated accounts) to influence the result, such as agreeing not to bid against each other or coordinating strategies to split prizes. Team play is strictly forbidden ￼. You may not create the impression of competition by placing sham bids or coordinating with others to drive up prices or discourage genuine bidders ￼. If we suspect that two or more users are colluding or sharing information to gain an unfair advantage, all involved may be disqualified and banned ￼.
+	Multiple Accounts: As noted, you cannot create more than one account for yourself or act through another’s account. Having multiple accounts to bid on the same auction or otherwise circumvent limits is considered a form of fraud and collusion.
+	Shill Bidding: You may not place bids on an auction with the intent to artificially increase the price or apparent interest without the genuine intention of winning. This includes, for example, bidding on your friend’s auction (if that ever applies) or using a second account to inflate an auction you’re selling (though currently all auctions are run by Last Man Left, not users).
+	Automated Bidding Tools: Apart from any official features we provide (such as an automated bid assistant for users, if offered), you are not allowed to use any bots, scripts, or automated software to place bids on your behalf. All bids must be placed manually by you (or via our official bidding tools which ensure fairness for all users). The use of unauthorized bidding software or any form of hacking or altering the bidding process is strictly prohibited.
+	Tampering and Hacking: You shall not attempt to gain unauthorized access to the Service, attack it with malicious code (viruses, DDOS, etc.), or exploit any vulnerability. Any such attempt will lead to immediate termination and potential legal action.
+
+Duty to Report Issues: If you encounter any technical glitch, error, or suspect any fraudulent activity (whether by other users or the system itself), you are encouraged to report it to us immediately. Examples include: if the timer isn’t behaving as expected, if you see bids you didn’t place, or if you suspect someone is not playing by the rules. We will investigate and address issues to maintain a fair environment (see Section 8 on Dispute Resolution for how we handle such reports). Do not exploit an obvious error or bug – doing so is a violation of these Terms.
+
+Community Conduct: When interacting with the Service or others (such as in any community forums, chat, or customer support communications), you agree to behave civilly and respectfully. Harassment, hate speech, abusive language, or any threatening or offensive behavior towards us or other users is grounds for account termination. We may also moderate any user-generated content on our platform and remove content that violates our standards or the law.
+
+Compliance: You agree to comply with all applicable laws and regulations in connection with your use of Last Man Left. This includes not engaging in any activity that would constitute illegal gambling, fraud, money laundering, or other unlawful conduct through the platform. You also agree to comply with any applicable auction laws or regulations as described in Section 9.
+
+7. Fair Bidding Practices and Platform Integrity
+
+We are committed to maintaining a fair and transparent auction environment. Last Man Left strictly prohibits any form of unfair manipulation of auction outcomes by either users or insiders. We have implemented measures to ensure that each user has a fair chance to win and that no one has an improper advantage.
+
+No Shill Bidding or Inside Bidders: Last Man Left and its employees, agents, and any individuals with access to confidential auction data are prohibited from bidding in auctions for items or prizes. We do not allow “shill” bidders (fake bidders) or ghost accounts to artificially drive up prices or create false demand ￼. You can trust that you are competing only against other legitimate users under the same terms. Any violation of this policy by an employee or associate of Last Man Left would be a serious offense resulting in disciplinary action and, if applicable, disclosure to affected users and regulators.
+
+No Bid Bots (Automated Company Bidders): Last Man Left does not use computerized bid bots to inflate auction activity ￼. Every bid you see in an auction is either placed by a real user or by a user-activated feature (like an optional bidding tool provided to all users equally). We will never secretly insert automatic bids to outbid users or to prolong an auction. In the interest of transparency, if Last Man Left ever introduces any form of automated bidding agent for any reason, we will clearly disclose it to users in the specific auction (for example, by labeling such bids or the participant clearly) so you are aware of what is happening. (To reiterate, our standard practice is zero company bots and we have no intention of using them in normal auctions.)
+
+Audit and Monitoring: We reserve the right to monitor all auctions for any irregularities. Our systems log bids and user activity, and we may conduct audits (automated and manual) to detect patterns of fraud, collusion, or other prohibited conduct. If we find evidence of any user violating fair practices, or any internal issues compromising fairness, we will take immediate corrective action. This may include canceling an affected auction, issuing refunds or credits to impacted users, and removing the offending users from the platform.
+
+House Rules and Additional Policies: Additional rules or limitations may apply to specific auctions or the use of certain features. For example, we may impose a limit on how many auctions a single user can win in a day or month (to prevent one user from dominating), or limits on bidding on multiple similar items concurrently. Any such rules will be published on the site (e.g., in a “House Rules” or FAQ section) and are incorporated into these Terms by reference. It is your responsibility to review any specific auction’s rules before participating. By placing a bid, you agree to any special terms applicable to that auction.
+
+Transparency Reports: We may periodically publish aggregate information about our auctions to promote transparency – for example, statistics on average savings, number of auctions run, etc. However, we will not publish personally identifying information about users without consent, and individual bidding histories remain private (except as required by law or legal process).
+
+No Guarantee of Success: While we strive to ensure every user has a fair chance, Last Man Left makes no guarantee that any particular user will win an auction or achieve any particular outcome by using the Service. The nature of the platform is competitive; many will participate but only one can win each auction. We caution you to bid responsibly and understand that losing is a common outcome in penny auctions.
+
+8. Consumer Protection, Fraud Prevention, and Dispute Resolution
+
+Anti-Fraud Measures: Last Man Left implements strict anti-fraud policies to protect our users and the integrity of our platform. We employ security measures to detect and prevent fraudulent activities, such as stolen credit card use, identity theft, collusion, or any form of cheating. If fraud is detected, we may suspend the suspicious account(s) and request additional verification documents from the user. We may also reverse any transactions or outcomes that resulted from confirmed fraudulent behavior (for example, canceling wins obtained by cheating). Users who commit fraud may be reported to law enforcement authorities.
+
+Fair Shipping and Prize Fulfillment: If you win an auction and pay for the item, Last Man Left will fulfill the prize as described. We strive to ship physical items to winners promptly (typically within [X] business days after payment and any required verification). Digital prizes (like gift codes) will be delivered electronically in a timely manner. In the event of a shipping delay or stock unavailability, we will notify you and provide an updated timeline or an alternative solution. We commit to not engage in any bait-and-switch or failure to deliver products – such conduct is illegal and against our values. (Notably, websites in the past have faced legal action for untimely shipping or failing to disclose fees ￼; Last Man Left is dedicated to doing better by our users.) If an item cannot be delivered within a reasonable time, we may offer you the option of a refund of the final price paid, or delivery of a substitute item of equal or greater value, at your choice.
+
+User Dispute Resolution (Support): If you have a complaint or dispute regarding the Service – for example, you believe an auction was not conducted fairly, you experienced a technical issue that affected your bidding, or you have a billing dispute – please contact our Customer Support at [support email/portal] as soon as possible. We encourage users to report issues within 7 days of the problem’s occurrence for the swiftest and most effective investigation. When you contact support, provide all relevant details (auction ID, what happened, screenshots if applicable, etc.). We will investigate your claim in good faith and try to resolve the issue in a manner fair to you and all users. Possible resolutions include: crediting back bids that were lost due to a verified technical error on our side, refunding mistaken charges, or in some cases canceling or rolling back an auction if we determine a serious problem affected its outcome.
+
+Platform Dispute Resolution (Internal): Last Man Left reserves the right to decide, in our discretion, how to remedy an irregular auction situation. If evidence confirms that an auction’s integrity was compromised (by a technical failure, cheating, or any other issue), we may void or cancel that auction. If an auction is voided, we will refund all bids spent by users in that auction to their accounts (or provide equivalent compensation), and no winner will be declared (or if a winner was already declared, that result will be invalidated). We know that your bids cost money, so we will not lightly cancel an auction unless necessary to uphold fairness and legal compliance. Our goal is to ensure confidence in the platform, and decisions will be made with that principle in mind.
+
+Binding Arbitration and Waiver of Class Actions: While we hope to resolve all user concerns amicably through our support team, any disputes or claims arising out of or relating to these Terms or the use of the Service that cannot be resolved informally shall be resolved by binding arbitration on an individual basis. By agreeing to these Terms, you and Last Man Left are each waiving the right to a trial by jury or to participate in a class action. This arbitration provision is governed by the Federal Arbitration Act and shall survive termination of your relationship with Last Man Left.
+	Arbitration Process: If a dispute arises that you and we cannot resolve through negotiation, either party may initiate arbitration through a reputable arbitration provider (such as the American Arbitration Association, “AAA”). The arbitration shall be conducted under the provider’s consumer arbitration rules. The arbitration may be held in the county where you live or another mutually agreed location, or via teleconference/videoconference, as appropriate. The arbitrator will have the authority to award the same damages and relief that a court could, but may not order consolidation or class arbitration.
+	Exceptions: Either party may bring claims in small claims court if they qualify, or seek an injunction or other equitable relief in court for allegations of intellectual property infringement or unauthorized access (hacking) of the Service. Also, you retain the right to opt out of this arbitration agreement within 30 days of first accepting these Terms by notifying us in writing at [contact address]—in that case, only a court may be used to resolve any dispute.
+		Fees and Costs: Payment of filing, administration, and arbitrator fees will be governed by the arbitration provider’s rules (with some consumer-friendly providers, Last Man Left will pay certain fees for non-frivolous claims). Each party is responsible for their own attorneys’ fees, unless the arbitrator awards fees under applicable law.
+
+Notice to California Residents: (If applicable) Users in California may invoke their rights under Cal. Civ. Code §1789.3 and contact the Complaint Assistance Unit of the Division of Consumer Services of the California Department of Consumer Affairs in writing at 1625 North Market Blvd., Suite N 112, Sacramento, CA 95834, or by telephone at 1-800-952-5210, if they wish to complain about the Service or otherwise. However, we encourage you to contact us first to resolve any issue.
+
+No Unlawful or Prohibited Appeal to Authorities: By agreeing to arbitration, you do not waive any substantive rights or remedies provided under federal or state laws; you simply agree to resolve disputes through a private arbitration process rather than through the courts. We remain subject to oversight from regulatory authorities (e.g., state attorneys general, the Federal Trade Commission) with respect to consumer protection laws, and these Terms do not diminish your ability to report issues to such agencies if applicable. For instance, the FTC monitors unfair business practices in auctions (like shill bidding) ￼, and Last Man Left is committed to complying with all such laws and regulations.
+
+9. Compliance with Laws and Licensing
+
+Last Man Left is committed to operating in compliance with all applicable federal and state laws governing our services:
+
+Auction Laws and Licensing: Where state or local laws require auctioneers or auction businesses to be licensed or bonded, we take necessary steps to comply. For example, some states (such as Georgia) require penny auction websites to register and obtain auctioneer licenses ￼. We have obtained any required licenses or registrations to legally operate in the jurisdictions we serve, or we have restricted access to the Service in areas where we are not licensed. Our auctions are conducted under the supervision of our company’s authorized personnel in accordance with applicable law. If you need information about a specific state’s licensing, please contact support for details. (In certain states without specific online auction regulations, general consumer protection and commerce laws still apply, which we rigorously follow.)
+
+Gaming and Sweepstakes Laws: Last Man Left is not a lottery or sweepstakes, as explained in Section 2. We do not require any purchase for mere entry (you are free to browse without bidding), and winning is not based on random chance but on competitive bidding. These characteristics mean that gambling laws or sweepstakes laws are generally not applicable ￼. Nonetheless, we ensure our practices do not violate any gambling statutes. We do not allow our platform to be used for any unlawful gambling purposes. If any jurisdiction ever reinterprets our auctions as a regulated gaming activity, we will take immediate steps to comply (such as age or location restrictions, or cessation of service in that area).
+
+Consumer Protection Laws: We adhere to all relevant consumer protection statutes and regulations, including the Federal Trade Commission Act’s prohibitions on unfair or deceptive acts or practices. We strive to advertise honestly, fully disclose the nature of our Service, and deliver on our promises to users. Our Terms and practices aim to reflect guidance from authorities: for instance, ensuring no hidden fees, providing timely delivery of goods, and avoiding any misleading claims about users’ chances or the true costs involved. We do not engage in any practices that could be deemed fraudulent, and we maintain internal policies and training to ensure compliance with the law.
+
+Export and Trade Laws: If applicable (for example, if our items can be shipped internationally or involve digital goods), you agree to comply with U.S. export controls and sanctions laws. You affirm that you are not located in a country subject to U.S. embargo, nor on any U.S. government list of prohibited or restricted parties. (Generally, our Service is U.S.-only, but this is a precautionary note.)
+
+Tax Compliance: Any required taxes (sales, use, VAT if applicable, etc.) on bid purchases or auction sales are your responsibility as the user. Last Man Left will collect taxes where required by law (e.g., sales tax for certain state residents) and remit those to the proper authorities. If you win items that have tax implications (for example, high-value prizes that might require issuance of a 1099 form for U.S. tax purposes), you agree to provide any necessary information to us so we can comply with reporting obligations.
+
+Regulatory Inquiries: If any regulator or authority lawfully contacts us about your use of the Service (for example, investigating a consumer complaint or a transaction), we may cooperate and share information as required by law, in line with our Privacy Policy. You likewise agree to cooperate with us if we need to gather information in response to a legal inquiry, regarding your interactions on the platform.
+
+10. Refunds, Returns, and Withdrawals Policy
+
+Bid Purchases – No Refunds: All purchases of Bid credits are final. Because you gain immediate access to the purchased bids (a digital service) and can use them to participate in auctions right away, we cannot generally offer refunds on bid purchases. Please be sure you wish to buy bids before completing a transaction. Exception: If you believe there was a mistake in the billing (for instance, you were charged the wrong amount, or a duplicate transaction occurred), contact us promptly and we will investigate and issue a correction or refund if warranted. Additionally, if a law in your jurisdiction provides a mandatory “cooling-off” cancellation period for digital purchases, we will honor that to the extent required (for example, some regions might allow consumers to cancel an online purchase within 48 hours under certain conditions – while U.S. law does not generally mandate this for online services, we mention it for completeness).
+
+Unused Bids on Account Closure: If you choose to close your Last Man Left account and you have a remaining balance of unused purchased bids, you may request a review for a possible refund of those unused bids. We reserve the right to decline refunding unused bids except where law requires, but we will consider factors such as: how long ago the bids were purchased, whether you have a history of abuse, and overall account activity. Promotional or free bids will not be refunded or redeemed for cash. Any expired bids (if bids have an expiration period, as disclosed at purchase) are ineligible for refund. If we approve a refund for unused bids, we may deduct any bonuses you received or fees (to cover transaction costs).
+
+Winning Auction Payment Refunds: If you win an auction and pay for the item, that sale is generally final. We do not allow returns or exchanges of auction items except in limited situations:
+	If the wrong item was delivered, or the item arrives defective or significantly not as described, contact us within [X] days of delivery. We may facilitate a return and either send the correct item or issue a refund of the final price you paid. We may also refund any bids you used in that auction as a courtesy if the issue was severe and attributable to our error (this is determined case-by-case).
+	If an item is lost in shipping or never delivered, we will either ship a replacement at our cost or refund you the final price (and shipping, if charged). Lost packages will be investigated with the carrier.
+	If you simply change your mind or no longer want the item after winning and paying, that is not a valid reason for return. Remember, by winning you may have prevented others from winning the item at that price. We expect you to honor the purchase. We generally do not restock items just because of buyer’s remorse, and no bids will be returned in that case.
+	In certain special cases (e.g., a safety recall of a product, or if a manufacturer cannot fulfill an item), we will work with you for an equitable solution, which might include a refund or substitution.
+
+Withdrawal of Funds: In the normal course, users do not maintain a cash balance with Last Man Left. You purchase bids which are immediately available to use, and cannot be “withdrawn” as money. Likewise, if you win a cash-equivalent prize (like a gift card or a cash bonus), we will deliver that as promised (e.g., send the gift card code or payment), but you cannot convert bids or unused prizes back into cash in your account. The only scenario involving “withdrawal” would be if Last Man Left at some point holds a monetary deposit or balance for you (for example, if we issued you a credit or refund and left it in your account, or a prize in the form of account credit). In such cases, any request to withdraw that balance (instead of using it on the platform) will be subject to our review and approval. We may, at our discretion, allow withdrawal of an account credit to your original payment method or via check/PayPal if the amount is significant and you will not use the platform further. We will not hold your money unfairly: if you have a legitimate monetary balance that should be returned, we will return it upon verification.
+
+Chargebacks: If you dispute a charge with your bank or credit card (a “chargeback”) without first seeking resolution through us, we reserve the right to suspend your account during the dispute. We take fraud seriously; initiating a false or unfounded chargeback after you have legitimately purchased bids or won items may be considered a violation of these Terms. We encourage you to work with us in good faith to resolve any billing issues. If a chargeback is ultimately granted, we will remove the corresponding bids from your account (if not already used) or may require the return of any items obtained with those bids or related wins. If you have already used the bids and also won items, a chargeback could put you in debt to us for the value received. In short, use chargebacks appropriately for true fraud; for other issues, let us help you directly.
+
+Cancellation by Company: If we terminate your account for a violation of these Terms or fraudulent activity, note that no refunds will be given for any unused bids or pending wins, except as required by law. Additionally, any wins you have not yet paid for or that have not shipped may be canceled, and we have no obligation to fulfill them. This is because serious violations (like cheating) forfeit your rights on the platform. Similarly, if we decide to permanently discontinue the Last Man Left Service, we will attempt to either fulfill all outstanding wins or refund corresponding payments, and refund unused bid purchases on a pro-rated basis (especially if shutting down through no fault of users). We would communicate any such scenario in advance.
+
+11. Disclaimers
+
+Service “As Is”: Last Man Left is provided on an “as is” and “as available” basis. While we strive for a smooth, error-free experience, we do not guarantee that the Service will be uninterrupted, secure, or free of errors, bugs, or inaccuracies. Technical issues or maintenance may occasionally prevent access, cause auction lag, or impact functionality. You use the Service at your own risk. To the fullest extent permitted by law, we disclaim all warranties, express or implied, in connection with the Service and your use thereof, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
+
+No Warranty on Outcomes: Last Man Left makes no warranty or guarantee regarding your chances of winning auctions or obtaining any particular value from the Service. Any strategies or tips we may provide (via blog or help pages) are for informational purposes only and do not guarantee results. The nature of penny auctions means many people will spend money and only one will win the item ￼. You acknowledge and accept this risk. We do not guarantee that the final auction price of any item will be a good bargain for you considering the bids you spent; it is possible to spend more on bids than an item is worth if you are not careful, and you agree that responsibility for managing your bidding and spending is yours alone.
+
+Item Descriptions and Warranties: We endeavor to describe auction items accurately (with photos and text). However, we do not manufacture these products; aside from any express warranties offered by us in the auction listing, items may be covered by the original manufacturer’s warranty (if new) and any issues or defects should be addressed under that warranty. We disclaim any additional warranties on the items. If an item is described incorrectly and significantly misrepresented, your remedy is to return it as per Section 10 (we will either correct the mistake or refund you). We are not liable for any minor discrepancies or cosmetic variations in products.
+
+No Liability for Technical Issues: We are not responsible for failures or delays in performance of the Service caused by matters beyond our reasonable control, including without limitation: network failures, internet congestion, server downtime, power outages, or acts of God. This includes any impact such issues may have on auction outcomes (e.g., if your internet connection drops and you fail to bid in time, or if our site goes down briefly). We will, however, use reasonable efforts to restore service and fairness (and as noted, we might cancel/void an auction if a major outage broadly affected users’ ability to participate fairly).
+
+Third-Party Sites and Links: The Service may contain links to third-party websites or resources (for example, item manufacturers, or payment providers). We are not responsible or liable for the availability or accuracy of, and we do not endorse, such external sites or resources. Your dealings with third parties found on or through the Service are solely between you and that third party, and are subject to their terms.
+
+User Content: If users are allowed to post content (such as reviews, comments, etc.), we do not actively endorse or approve any user-generated content. We disclaim liability for user posts, and we reserve the right to remove content that violates any law or our policies.
+
+Not Financial Advice or Investment: You acknowledge that participating in penny auctions is for entertainment/shopping purposes, not a way to earn money or make a financial investment. Any references on our site to “savings” or “discounts” are comparing final auction price plus bids spent to the approximate retail value of items – they are not guarantees. Past results (like someone winning for cheap) do not predict future outcomes for you.
+
+Statutory Rights: In certain jurisdictions, you may have rights which cannot be disclaimed. To the extent such laws apply, nothing in this Section 11 is meant to limit your rights under those laws. For example, some states have implied warranty protections for consumers – we do not disclaim any warranty or liability which we cannot under law.
+
+12. Limitation of Liability
+
+To the maximum extent permitted by law, in no event shall Last Man Left or its directors, officers, employees, or agents be liable to you for any indirect, consequential, exemplary, incidental, special or punitive damages, or for any lost profits, lost savings, or loss of data arising out of or relating to your use of (or inability to use) the Service or any items obtained through the Service, even if we have been advised of the possibility of such damages.
+
+To the extent we are found liable notwithstanding the above limitation, our cumulative liability to you shall not exceed the total amount of money you have paid to Last Man Left in the six (6) months immediately preceding the event giving rise to the claim (for example, the total in bid purchases and final auction prices you paid in that period). This limitation is an essential part of the bargain between you and us – the Service would not be provided without these limitations.
+
+Some states do not allow the exclusion or limitation of certain damages, so the above limitation may not fully apply to you. In such states, our liability is limited to the greatest extent permitted by law.
+
+13. Intellectual Property and Use of Site Content
+
+All content and materials available on Last Man Left, including but not limited to the website design, text, graphics, logos, button icons, images, audio clips, and software, are the property of Last Man Left or its licensors and are protected by intellectual property laws. Last Man Left™ and our logos are trademarks of Last Man Left Inc. You are granted a limited, non-exclusive, non-transferable license to access and use the Service and its content for your personal, non-commercial use in accordance with these Terms.
+
+You may not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, or transmit any of the material from our Service except as automatically and incidentally enabled by the Service (such as caching for personal viewing). Any unauthorized use of our intellectual property may result in termination of the limited license and may also violate applicable law.
+
+If you submit feedback or ideas to us (for example, suggestions to improve the platform), you grant us a royalty-free, perpetual license to use and incorporate those ideas without any obligation to compensate you.
+
+14. Termination of Use
+
+We reserve the right to suspend or terminate your account and access to the Service, at our sole discretion, for violation of these Terms or for any other legally justifiable reason. We may, for example, terminate if we believe you are under 18, if you have engaged in fraudulent activity, if you fail to pay amounts due, or if you otherwise pose risk or legal exposure to us. We may also terminate if we decide to discontinue the Service (with notice to active users).
+
+If your account is terminated by us due to your breach of these Terms, you will not be eligible for any refunds of unused bids or other compensation, except as required by law. If you have pending wins that you have not yet received, we reserve the right to cancel those transactions. You must not attempt to circumvent a termination (e.g., creating a new account if your account was banned) – doing so may result in legal action.
+
+You are free to stop using the Service and may close your account at any time. Upon closure, Section 10 (Refunds/Withdrawals) explains what may happen with any unused bids. Certain provisions of these Terms survive any termination, including intellectual property rights, indemnity, disclaimers, limitations of liability, and dispute resolution provisions.
+
+15. Indemnification
+
+You agree to indemnify, defend, and hold harmless Last Man Left and its affiliates, and their respective officers, directors, employees, agents, and representatives, from and against any and all claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys’ fees) made by any third party due to or arising out of: (a) your use of the Service in violation of these Terms or applicable law; (b) your breach of any of your representations or obligations under these Terms; (c) any dispute you have with another user or a third party as a result of your use of the Service; or (d) your negligence, fraud, or willful misconduct. We reserve the right, at our own expense, to assume exclusive defense and control of any matter otherwise subject to indemnification by you (in which case you agree to cooperate with us in asserting any available defenses). This obligation will survive termination of your use of the Service and these Terms.
+
+16. Modifications to Terms or Service
+
+Changes to Terms: Last Man Left may modify these Terms from time to time. If we make material changes, we will notify users by posting the updated Terms on our website with a new effective date, and/or by sending a notice to the email associated with your account. It is your responsibility to review the Terms periodically. By continuing to use the Service after updated Terms are posted, you accept and agree to the changes. If you do not agree to a change, you must stop using the Service and may close your account. No modification or amendment to these Terms by you (the user) will be binding on Last Man Left unless expressly agreed in writing by an authorized representative of Last Man Left.
+
+Changes to Service: We reserve the right to modify or discontinue, temporarily or permanently, any aspect of the Service (such as adding or removing features, changing auction formats, adjusting fees for bids) at any time. We will endeavor to give advance notice if any change will materially affect the user experience or financial obligations (for example, if we were to change bid pricing or introduce new charges). However, certain changes may be implemented with minimal notice, especially if needed for security, legal compliance, or to improve fairness. Last Man Left shall not be liable to you or any third party for any modification, suspension, or discontinuance of the Service, except that if we discontinue the Service entirely, we will address outstanding account balances as described in Section 10.
+
+17. Miscellaneous
+
+Governing Law: These Terms and any dispute or claim arising out of or related to them (including non-contractual disputes) shall be governed by and construed in accordance with the laws of the State of [State] and the federal laws of the United States, without giving effect to any conflict of law principles that would result in the application of any other jurisdiction’s laws. (If you are a consumer residing in a state with mandatory consumer protection laws, those laws may apply to you to the extent they are more protective.)
+
+No Waiver: Our failure to enforce any right or provision of these Terms shall not be deemed a waiver of that right or provision. Any waiver must be in writing and signed by us to be effective. If we do waive a default or breach by you, it will be specific to that instance and will not constitute a continuing waiver or a waiver of any other breach.
+
+Severability: If any provision of these Terms is held to be invalid, illegal, or unenforceable by a court or arbitrator of competent jurisdiction, that provision shall be eliminated or limited to the minimum extent such that the remaining provisions of the Terms will continue in full force and effect. In other words, the invalid part will be severed, but the rest of the agreement remains valid and enforceable.
+
+Entire Agreement: These Terms (along with any documents expressly incorporated by reference, such as the Privacy Policy and any specific rules or guidelines on our site) constitute the entire agreement between you and Last Man Left regarding the Service, and supersede all prior and contemporaneous understandings, agreements, representations, and warranties (both written and oral) regarding the Service. You acknowledge that you have not relied on any representation not expressly set forth in these Terms.
+
+Assignment: You may not assign or transfer any of your rights or obligations under these Terms without our prior written consent. Last Man Left may assign or transfer our obligations and rights under these Terms (for example, in the event of a merger, acquisition, or transfer of assets) to an affiliate or successor entity without notice to you. These Terms will inure to the benefit of and be binding upon the parties and their permitted successors and assigns.
+
+No Agency: No joint venture, partnership, employment, or agency relationship exists between you and Last Man Left as a result of these Terms or your use of the Service. You are an independent user of the platform.
+
+Headings: Section headings in these Terms are for convenience only and have no legal or contractual effect.
+
+Contact Information: If you have any questions, concerns, or notices to provide under these Terms, you may contact us at:
+Last Man Left Inc.
+[Mailing Address]
+[City, State, ZIP, Country]
+Email: [support@lastmanleft.com] (for general inquiries or support)
+Attn: Legal Department (for legal notices)
+
+Consumer Disclosures: Pursuant to the U.S. Electronic Signatures in Global and National Commerce Act (E-SIGN Act) and any other applicable law, you consent to receive communications from us electronically. We will communicate with you by email or by posting notices on our website or through the Service. You agree that all agreements, notices, disclosures, and other communications we provide electronically satisfy any legal requirement that such communications be in writing.
+
+By using Last Man Left, you acknowledge that you have read these Terms of Service, understand them, and agree to be bound by them. Happy bidding, and good luck being the Last Man Left!  
+    
+    
+    
+
 </body>
 </html>
