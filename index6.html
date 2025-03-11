@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta and Title -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta & Title -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>LAST MAN LEFT</title>
-    <!-- Include Font Awesome for icons -->
+    
+    <!-- Google Fonts (Montserrat) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -13,624 +19,831 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    
+    <!-- QRCode.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
     <style>
-        /* Reset default margins and paddings */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f5f5f5;
-            color: #333;
-            scroll-behavior: smooth;
-        }
-        /* Header Styles */
-        .header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            background-color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            z-index: 1000;
-        }
-        .header .logo a {
-            text-decoration: none;
-            color: #333;
-            font-size: 24px;
-            font-weight: bold;
-        }
+      /* === RESET & BASE STYLING === */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html, body {
+        height: 100%;
+      }
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: #1a1a1a; /* Dark background */
+        color: #ffffff;
+        scroll-behavior: smooth;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      button {
+        cursor: pointer;
+        font-family: inherit;
+      }
+
+      /* === HEADER STYLES === */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #000000dd; /* Slightly transparent black */
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        z-index: 1000;
+      }
+      .logo a {
+        font-size: 24px;
+        font-weight: bold;
+        color: #ffdc00; /* Accent color for logo */
+      }
+      .menu-icon {
+        display: block;
+        color: #ffffff;
+      }
+      .menu-icon i {
+        font-size: 28px;
+      }
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background-color: #000;
+        border: 1px solid #333;
+        display: none;
+        flex-direction: column;
+        min-width: 150px;
+        padding: 0;
+      }
+      .nav-links ul {
+        list-style: none;
+      }
+      .nav-links ul li {
+        border-bottom: 1px solid #333;
+      }
+      .nav-links ul li a {
+        color: #fff;
+        padding: 10px 15px;
+        display: block;
+      }
+      .nav-links ul li a:hover {
+        background-color: #333333;
+      }
+      
+      @media (min-width: 768px) {
         .menu-icon {
-            cursor: pointer;
-        }
-        .menu-icon i {
-            font-size: 28px;
-            color: #000;
+          display: none; /* Hide hamburger on larger screens */
         }
         .nav-links {
-            position: absolute;
-            top: 60px;
-            right: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            display: none;
-            flex-direction: column;
-            min-width: 150px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            z-index: 999;
+          position: static;
+          display: flex !important;
+          background-color: transparent;
+          flex-direction: row;
+          align-items: center;
+          border: none;
         }
         .nav-links ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+          display: flex;
         }
         .nav-links ul li {
-            border-bottom: 1px solid #eee;
+          border: none;
+          margin-left: 20px;
         }
         .nav-links ul li a {
-            color: #333;
-            padding: 10px 15px;
-            display: block;
-            text-decoration: none;
+          padding: 0;
         }
         .nav-links ul li a:hover {
-            background-color: #f5f5f5;
+          background-color: transparent;
+          color: #ffdc00;
         }
-        @media (min-width: 768px) {
-            .menu-icon {
-                display: none;
-            }
-            .nav-links {
-                position: static;
-                display: flex !important;
-                background-color: transparent;
-                flex-direction: row;
-                align-items: center;
-                border: none;
-                box-shadow: none;
-            }
-            .nav-links ul {
-                display: flex;
-            }
-            .nav-links ul li {
-                border: none;
-                margin-left: 20px;
-            }
-            .nav-links ul li a {
-                padding: 0;
-                color: #333;
-            }
-            .nav-links ul li a:hover {
-                background-color: transparent;
-                color: #0074D9;
-            }
-        }
-        .content {
-            padding: 80px 20px 20px;
-        }
-        .btn {
-            background-color: #FFDC00;
-            color: #333;
-            padding: 12px 24px;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            position: relative;
-            transition: background-color 0.3s;
-            border-radius: 4px;
-            font-weight: bold;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .btn:hover {
-            background-color: #FF851B;
-        }
-        #countdown-timer {
-            font-size: 32px;
-            font-weight: bold;
-            color: #FF4136;
-        }
-        .bid-input {
-            display: inline-flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .bid-input button {
-            background-color: #DDDDDD;
-            border: none;
-            padding: 10px;
-            font-size: 18px;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            transition: background-color 0.3s;
-            border-radius: 4px;
-        }
-        .bid-input button:hover {
-            background-color: #CCCCCC;
-        }
-        .bid-input input {
-            width: 60px;
-            text-align: center;
-            font-size: 16px;
-            padding: 5px;
-            border: 1px solid #CCC;
-            outline: none;
-            margin: 0 5px;
-            border-radius: 4px;
-        }
-        .bid-input input:focus {
-            border-color: #0074D9;
-        }
-        h1 {
-            color: #0074D9;
-            font-size: 36px;
-        }
-        h2 {
-            color: #FF4136;
-            font-size: 32px;
-        }
-        h3 {
-            color: #333;
-            font-size: 24px;
-        }
-        p {
-            font-size: 18px;
-            color: #555;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 10px auto;
-        }
+      }
 
-        /* New class to style the last decimal digit smaller and higher */
-        .small-decimal {
-            color: #f5f5f5;
-            font-size: 0.75em;
-            position: relative;
-            top: -0.3em;
-        }
+      /* === HERO SECTION === */
+      .hero {
+        background: linear-gradient(135deg, #0074D9 0%, #1a1a1a 100%); 
+        /* Feel free to replace with a background image */
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding-top: 60px; /* to make room for header */
+      }
+      .hero-content {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      .hero-content h1 {
+        font-size: 50px;
+        color: #ffdc00;
+        margin-bottom: 20px;
+      }
+      .hero-content p {
+        font-size: 20px;
+        margin-bottom: 30px;
+        color: #f0f0f0;
+      }
+      .btn-primary {
+        background-color: #ffdc00;
+        color: #333;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 30px;
+        font-size: 18px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+      }
+      .btn-primary:hover {
+        background-color: #ff851b;
+      }
 
-        /* Accordion Styles for the Pot Breakdown and Invite Section */
-        .breakdown-section, #invite-friends-section {
-            max-width: 1000px;
-            margin: 50px auto;
-            text-align: left;
+      /* === HOW IT WORKS SECTION === */
+      .how-it-works-section {
+        background-color: #222;
+        padding: 50px 20px;
+        text-align: center;
+      }
+      .how-it-works-section h2 {
+        font-size: 36px;
+        margin-bottom: 30px;
+        color: #ffdc00;
+      }
+      .steps-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        max-width: 1000px;
+        margin: 0 auto;
+        gap: 20px;
+      }
+      .step {
+        background-color: #2f2f2f;
+        padding: 20px;
+        border-radius: 8px;
+        transition: background-color 0.3s;
+      }
+      .step:hover {
+        background-color: #3f3f3f;
+      }
+      .step i {
+        font-size: 40px;
+        margin-bottom: 10px;
+        color: #ffdc00;
+      }
+      .step h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #ffffff;
+      }
+      .step p {
+        color: #cccccc;
+      }
+
+      @media (min-width: 768px) {
+        .steps-container {
+          grid-template-columns: repeat(3, 1fr);
         }
-        .accordion {
-            background-color: #fff;
-            color: #333;
-            cursor: pointer;
-            padding: 15px;
-            margin-top: 10px;
-            width: 100%;
-            border: 1px solid #ddd;
-            text-align: left;
-            outline: none;
-            transition: background-color 0.4s ease;
-            font-size: 18px;
-            border-radius: 4px;
-        }
-        .accordion.active, .accordion:hover {
-            background-color: #f2f2f2;
-        }
-        .panel {
-            padding: 0 15px 15px;
-            background-color: white;
-            display: none;
-            overflow: hidden;
-        }
-        .panel table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-        .panel th, .panel td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            vertical-align: top;
-        }
-        .panel th {
-            background-color: #f9f9f9;
-        }
-        .panel p {
-            margin-top: 10px;
-        }
+      }
+
+      /* === MAIN CONTENT (EXISTING) === */
+      .content {
+        max-width: 1000px;
+        margin: 50px auto;
+        text-align: center;
+        padding: 0 20px;
+      }
+      h2 {
+        color: #ff4136;
+        font-size: 32px;
+        margin-top: 30px;
+      }
+      h3 {
+        color: #ffdc00;
+        font-size: 24px;
+        margin: 20px 0;
+      }
+      p {
+        font-size: 18px;
+        color: #dddddd;
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+      #pot-amount {
+        font-size: 40px;
+        margin-bottom: 10px;
+        color: #ffdc00; /* Make pot amount stand out */
+      }
+      #countdown-timer {
+        font-size: 32px;
+        font-weight: bold;
+        color: #ff4136;
+      }
+
+      /* --- Buttons & Inputs --- */
+      .btn {
+        background-color: #ffdc00;
+        color: #333;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 4px;
+        font-size: 18px;
+        font-weight: bold;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        margin: 0 0 15px 0;
+        transition: background-color 0.3s;
+      }
+      .btn:hover {
+        background-color: #ff851b;
+      }
+      .bid-input {
+        display: inline-flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .bid-input button {
+        background-color: #666;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        font-size: 18px;
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+      }
+      .bid-input button:hover {
+        background-color: #555;
+      }
+      .bid-input input {
+        width: 60px;
+        text-align: center;
+        font-size: 16px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        outline: none;
+        margin: 0 5px;
+        border-radius: 4px;
+      }
+      .bid-input input:focus {
+        border-color: #ffdc00;
+      }
+
+      /* Smaller decimal digit for pot display */
+      .small-decimal {
+        color: #bbbbbb;
+        font-size: 0.65em;
+        position: relative;
+        top: -0.3em;
+      }
+
+      /* === ACCORDION SECTIONS (Buy Bids / Invite) === */
+      .accordion {
+        background-color: #2f2f2f;
+        color: #fff;
+        cursor: pointer;
+        padding: 15px;
+        margin-top: 10px;
+        width: 100%;
+        border: 1px solid #333;
+        text-align: left;
+        outline: none;
+        transition: background-color 0.4s;
+        font-size: 18px;
+        border-radius: 4px;
+      }
+      .accordion:hover {
+        background-color: #3f3f3f;
+      }
+      .accordion.active {
+        background-color: #3f3f3f;
+      }
+      .panel {
+        padding: 0 15px 15px;
+        background-color: #1a1a1a;
+        display: none;
+        overflow: hidden;
+      }
+      .panel table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+      }
+      .panel th, .panel td {
+        border: 1px solid #444;
+        padding: 10px;
+        vertical-align: top;
+      }
+      .panel th {
+        background-color: #2f2f2f;
+      }
+      .panel p, .panel td {
+        color: #ddd;
+      }
+
+      /* QR Code */
+      .qr-code {
+        width: 150px;
+        height: 150px;
+        margin-top: 10px;
+        display: inline-block;
+      }
+
+      /* === Buy Bids & Invite Sections === */
+      .section-container {
+        max-width: 1000px;
+        margin: 50px auto;
+        text-align: left;
+        padding: 0 20px;
+      }
+      /* Invite Link Input */
+      .invite-link-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+      }
+      .invite-link-container input {
+        width: 300px;
+        padding: 8px 12px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px 0 0 4px;
+        outline: none;
+      }
+      .invite-link-container input:focus {
+        border-color: #ffdc00;
+      }
+      .invite-link-container button {
+        border-radius: 0 4px 4px 0;
+        border: none;
+        padding: 9px 16px;
+      }
+      #invite-link-qrcode {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      /* === Leaderboard === */
+      .leaderboard-section {
+        max-width: 1000px;
+        margin: 50px auto;
+        text-align: left;
+        padding: 0 20px;
+      }
+      #leaderboard-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+      }
+      #leaderboard-table th, #leaderboard-table td {
+        border: 1px solid #444;
+        padding: 10px;
+        color: #ddd;
+      }
+      #leaderboard-table th {
+        background-color: #2f2f2f;
+        text-align: left;
+      }
+      #leaderboard-table tbody tr:nth-child(even) {
+        background-color: #252525;
+      }
+
+      /* === Social Media === */
+      .social-media-section {
+        max-width: 1000px;
+        margin: 50px auto;
+        padding: 0 20px;
+      }
+      .social-media-section h2 {
+        font-size: 28px;
+        color: #ffdc00;
+        margin-bottom: 20px;
+      }
+      .btn-container {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      /* === FOOTER / LINKS === */
+      .footer-link {
+        color: #ffdc00;
+      }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="logo">
-            <a href="#">LAST MAN LEFT</a>
-        </div>
-        <div class="menu-icon" id="menu-icon">
-            <i class="fas fa-bars">=</i>
-        </div>
-        <nav class="nav-links" id="nav-links">
-            <ul>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#twitter">Twitter</a></li>
-                <li><a href="#telegram">Telegram</a></li>
-                <li><a href="#invite-post">Invite Post</a></li>
-                <li><a href="#check-posts">Check Posts</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <!-- Main Content -->
-    <div class="content">
-        <h1>LAST MAN LEFT</h1>
-        <h3>The Pot</h3>
-        <h2 id="pot-amount">$750.000</h2>
-        <h3>Your Countdown</h3>
-        
-        <p><span id="countdown-timer">Loading...</span></p>
-    
-        <div class="bid-input">
-            <button id="decrease-bid">-</button>
-            <input type="text" id="bid-quantity" value="1">
-            <button id="increase-bid">+</button>
-        </div>
-    
-        <br>
-    
-        <button id="place-bid-button" class="btn">Place Time Bid(s)</button>
-    
-        <p>The last person with time left wins the constantly growing Pot, even if it grows to $1 billion!</p>
-        <p>The Pot grows every time a new bid is placed!</p>
-        <p>The last person with time left on their countdown wins the Pot for $1, even if it grows to $1 billion!</p>
-        <p>There is no luck or chance involved with Last Man Left.</p>
-        <p>Winning is simply a matter of resetting your countdown before it reaches 00:00:00 longer than everyone else!</p>
-        <p>It is a battle of the strongest will!</p>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <a href="#">LAST MAN LEFT</a>
+    </div>
+    <div class="menu-icon" id="menu-icon">
+      <i class="fas fa-bars"></i>
+    </div>
+    <nav class="nav-links" id="nav-links">
+      <ul>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#buy-bids-section">Buy Minutes</a></li>
+        <li><a href="#invite-friends-section">Invite Friends</a></li>
+        <li><a href="#leaderboard">Leaderboard</a></li>
+        <li><a href="#social-media">Social Posts</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>LAST MAN LEFT</h1>
+      <p>Battle of the Strongest Will: Outlast everyone by keeping your timer above zero!</p>
+      <button class="btn-primary" onclick="document.getElementById('content').scrollIntoView({behavior:'smooth'})">Play Now</button>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS SECTION -->
+  <section class="how-it-works-section" id="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps-container">
+      <div class="step">
+        <i class="fas fa-clock"></i>
+        <h3>1. Add Time</h3>
+        <p>Buy minutes to reset your countdown before it hits zero.</p>
+      </div>
+      <div class="step">
+        <i class="fas fa-chart-line"></i>
+        <h3>2. Pot Grows</h3>
+        <p>Each minute purchased increases the prize pool.</p>
+      </div>
+      <div class="step">
+        <i class="fas fa-trophy"></i>
+        <h3>3. Be the Last</h3>
+        <p>Keep your timer above zero longer than anyone else to win.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT (GAME INTERFACE) -->
+  <div class="content" id="content">
+    <h3>The Constantly Growing Prize</h3>
+    <h2 id="pot-amount">$750.000</h2>
+    <h3>Your Countdown</h3>
+    <p id="countdown-timer">Loading...</p>
+
+    <div class="bid-input">
+      <button id="decrease-bid">-</button>
+      <input type="text" id="bid-quantity" value="1" />
+      <button id="increase-bid">+</button>
+    </div>
+    <button id="place-bid-button" class="btn">Add Minutes</button>
+
+    <p>The last person with time left wins the opportunity to buy the constantly growing prize for $1, even if it grows to $1 billion!</p>
+    <p>There is no luck or chance involved — winning is simply a matter of resetting your countdown longer than everyone else!</p>
+  </div>
+
+  <!-- BUY MINUTES WITH BITCOIN SECTION -->
+  <div class="section-container" id="buy-bids-section">
+    <h2>Buy Minutes with Bitcoin</h2>
+    <p>Enhance your chances of winning by purchasing minutes. Select a package and follow the payment instructions:</p>
+
+    <button class="accordion">Buy 100 Minutes - 0.001 BTC ($10)</button>
+    <div class="panel">
+      <table>
+        <tr><th>Package</th><th>Price</th><th>Payment Instructions</th></tr>
+        <tr>
+          <td>100 Minutes</td>
+          <td>0.001 BTC</td>
+          <td>
+            <p>Send 0.001 BTC to this address:</p>
+            <p><strong>1BoatSLRHtKNngkdXEeobR76b53LETtpyT</strong></p>
+            <div id="qrcode-100" class="qr-code"></div>
+          </td>
+        </tr>
+      </table>
     </div>
 
-    <!-- Invite Friends Section -->
-    <div id="invite-friends-section">
-        <h2>Invite Friends & Earn Rewards</h2>
-        <p>Share your unique invite link with friends and earn <strong>100 free bids</strong> for each person who joins using your link!</p>
-        <p>By inviting others, you are automatically entered into the <strong>Inviter Contest</strong>. The prizes increase as the potential prize grows. Here’s how the inviters' rewards scale:</p>
-
-        <button class="accordion">If The Pot Reaches $10,000</button>
-        <div class="panel">
-            <table>
-                <tr><th>Role</th><th>Reward</th></tr>
-                <tr>
-                    <td>Top Inviter & First Inviter</td>
-                    <td>$1,000</td>
-                </tr>
-            </table>
-        </div>
-
-        <button class="accordion">If The Pot Reaches $100,000</button>
-        <div class="panel">
-            <table>
-                <tr><th>Role</th><th>Reward</th></tr>
-                <tr>
-                    <td>Top Inviter & First Inviter</td>
-                    <td>$10,000</td>
-                </tr>
-                <tr>
-                    <td>Top 10 Inviters</td>
-                    <td>$1,000</td>
-                </tr>
-            </table>
-        </div>
-
-        <button class="accordion">If The Pot Reaches $1,000,000 (1 Million)</button>
-        <div class="panel">
-            <table>
-                <tr><th>Role</th><th>Reward</th></tr>
-                <tr>
-                    <td>Top Inviter & First Inviter</td>
-                    <td>$100,000</td>
-                </tr>
-                <tr>
-                    <td>Top 10 Inviters</td>
-                    <td>$10,000</td>
-                </tr>
-                <tr>
-                    <td>Top 100 Inviters</td>
-                    <td>$1,000</td>
-                </tr>
-            </table>
-        </div>
-
-        <button class="accordion">If The Pot Reaches $10,000,000 (10 Million)</button>
-        <div class="panel">
-            <table>
-                <tr><th>Role</th><th>Reward</th></tr>
-                <tr>
-                    <td>Top Inviter & First Inviter</td>
-                    <td>$1,000,000</td>
-                </tr>
-                <tr>
-                    <td>Top 10 Inviters</td>
-                    <td>$100,000</td>
-                </tr>
-                <tr>
-                    <td>Top 100 Inviters</td>
-                    <td>$10,000</td>
-                </tr>
-                <tr>
-                    <td>Top 1,000 Inviters</td>
-                    <td>$1,000</td>
-                </tr>
-            </table>
-        </div>
-
-        <button class="accordion">If The Pot Reaches $100,000,000 (100 Million)</button>
-        <div class="panel">
-            <table>
-                <tr><th>Role</th><th>Reward</th></tr>
-                <tr>
-                    <td>Top Inviter & First Inviter</td>
-                    <td>$10,000,000</td>
-                </tr>
-                <tr>
-                    <td>Top 10 Inviters</td>
-                    <td>$1,000,000</td>
-                </tr>
-                <tr>
-                    <td>Top 100 Inviters</td>
-                    <td>$100,000</td>
-                </tr>
-                <tr>
-                    <td>Top 1,000 Inviters</td>
-                    <td>$10,000</td>
-                </tr>
-                <tr>
-                    <td>Top 10,000 Inviters</td>
-                    <td>$1,000</td>
-                </tr>
-            </table>
-        </div>
-
-        <button class="accordion">If The Pot Reaches $1,000,000,000 (1 Billion)</button>
-        <div class="panel">
-            <table>
-                <tr><th>Role</th><th>Reward</th></tr>
-                <tr>
-                    <td>Top Inviter & First Inviter</td>
-                    <td>$100,000,000</td>
-                </tr>
-                <tr>
-                    <td>Top 10 Inviters</td>
-                    <td>$10,000,000</td>
-                </tr>
-                <tr>
-                    <td>Top 100 Inviters</td>
-                    <td>$1,000,000</td>
-                </tr>
-                <tr>
-                    <td>Top 1,000 Inviters</td>
-                    <td>$100,000</td>
-                </tr>
-                <tr>
-                    <td>Top 10,000 Inviters</td>
-                    <td>$10,000</td>
-                </tr>
-                <tr>
-                    <td>Top 100,000 Inviters</td>
-                    <td>$1,000</td>
-                </tr>
-            </table>
-        </div>
-
-        <p>The more friends you invite, the better your chances to climb the leaderboard and win big as the pot grows!</p>
-        <p>Your unique invite link:</p>
-        <div style="background-color: #f5f5f5; padding: 10px; border-radius: 5px; display: inline-block;">
-            <strong id="invite-link"></strong>
-            <button id="copy-link" class="btn" style="margin-left: 10px;">Copy Link</button>
-        </div>
+    <button class="accordion">Buy 500 Minutes - 0.005 BTC ($50)</button>
+    <div class="panel">
+      <table>
+        <tr><th>Package</th><th>Price</th><th>Payment Instructions</th></tr>
+        <tr>
+          <td>500 Minutes</td>
+          <td>0.005 BTC</td>
+          <td>
+            <p>Send 0.005 BTC to this address:</p>
+            <p><strong>1BoatSLRHtKNngkdXEeobR76b53LETtpyT</strong></p>
+            <div id="qrcode-500" class="qr-code"></div>
+          </td>
+        </tr>
+      </table>
     </div>
 
-   <!-- Full Pot Breakdown Section -->
-   <div class="breakdown-section">
-       <h2>Full Pot Breakdown</h2>
+    <button class="accordion">Buy 1000 Minutes - 0.01 BTC ($100)</button>
+    <div class="panel">
+      <table>
+        <tr><th>Package</th><th>Price</th><th>Payment Instructions</th></tr>
+        <tr>
+          <td>1000 Minutes</td>
+          <td>0.01 BTC</td>
+          <td>
+            <p>Send 0.01 BTC to this address:</p>
+            <p><strong>1BoatSLRHtKNngkdXEeobR76b53LETtpyT</strong></p>
+            <div id="qrcode-1000" class="qr-code"></div>
+          </td>
+        </tr>
+      </table>
+    </div>
 
-       <button class="accordion">If The Pot Reaches: $10,000</button>
-       <div class="panel">
-           <table>
-               <tr><th>Role</th><th>Reward</th></tr>
-               <tr><td>The Top Bidder Gets<br>The Top Inviter Gets<br>The Top Poster Gets<br>The Top Post Checker Gets<br>The Oldest Active Bidder Gets<br>The First Bidder Gets<br>The First Inviter Gets</td><td>$1,000</td></tr>
-           </table>
-       </div>
+    <p>After completing your Bitcoin payment, your minutes will be credited automatically.</p>
+  </div>
 
-       <button class="accordion">If The Pot Reaches: $100,000</button>
-       <div class="panel">
-           <table>
-               <tr><th>Role</th><th>Reward</th></tr>
-               <tr><td>Top Bidder<br>Top Inviter<br>Top Poster<br>Top Post Checker<br>Oldest Active Bidder<br>First Bidder<br>First Inviter</td><td>$10,000</td></tr>
-               <tr><td>Top 10 Bidders<br>Top 10 Inviters<br>Top 10 Posters<br>Top 10 Post Checkers<br>10 Oldest Active Bidders<br>First 10 Bidders<br>First 10 Inviters</td><td>$1,000</td></tr>
-           </table>
-       </div>
+  <!-- INVITE FRIENDS SECTION -->
+  <div class="section-container" id="invite-friends-section">
+    <h2>Get 100 Minutes For Each Friend You Invite</h2>
+    <p>Share your unique invite link and earn <strong>100 free minutes</strong> for each friend who joins! Increase the pot and your chances of winning.</p>
+    <p>Your unique invite link:</p>
+    <div class="invite-link-container">
+      <input type="text" id="invite-link" readonly />
+      <button id="copy-link" class="btn">Copy Link</button>
+    </div>
+    <div id="invite-link-qrcode"></div>
 
-       <button class="accordion">If The Pot Reaches: $1,000,000 (1 Million)</button>
-       <div class="panel">
-           <table>
-               <tr><th>Role</th><th>Reward</th></tr>
-               <tr><td>Top Bidder<br>Top Inviter<br>Top Poster<br>Top Post Checker<br>Oldest Active Bidder<br>First Bidder<br>First Inviter</td><td>$100,000</td></tr>
-               <tr><td>Top 10 Bidders<br>Top 10 Inviters<br>Top 10 Posters<br>Top 10 Post Checkers<br>10 Oldest Active Bidders<br>First 10 Bidders<br>First 10 Inviters</td><td>$10,000</td></tr>
-               <tr><td>Top 100 Bidders<br>Top 100 Inviters<br>Top 100 Posters<br>Top 100 Post Checkers<br>100 Oldest Active Bidders<br>First 100 Bidders<br>First 100 Inviters</td><td>$1,000</td></tr>
-           </table>
-       </div>
+    <p>All inviters are entered into the <strong>Inviter Contest</strong> with growing rewards!</p>
 
-       <button class="accordion">If The Pot Reaches: $10,000,000 (10 Million)</button>
-       <div class="panel">
-           <table>
-               <tr><th>Role</th><th>Rewards</th></tr>
-               <tr><td>Top Bidder<br>Top Inviter<br>Top Poster<br>Top Post Checker<br>Oldest Active Bidder<br>First Bidder<br>First Inviter</td><td>$1,000,000</td></tr>
-               <tr><td>Top 10 Bidders<br>Top 10 Inviters<br>Top 10 Posters<br>Top 10 Post Checkers<br>10 Oldest Active Bidders<br>First 10 Bidders<br>First 10 Inviters</td><td>$100,000</td></tr>
-               <tr><td>Top 100 Bidders<br>Top 100 Inviters<br>Top 100 Posters<br>Top 100 Post Checkers<br>100 Oldest Active Bidders<br>First 100 Bidders<br>First 100 Inviters</td><td>$10,000</td></tr>
-               <tr><td>Top 1,000 Bidders<br>Top 1,000 Inviters<br>Top 1,000 Posters<br>Top 1,000 Post Checkers<br>1,000 Oldest Active Bidders<br>First 1,000 Bidders<br>First 1,000 Inviters</td><td>$1,000</td></tr>
-           </table>
-       </div>
+    <!-- Sample Accordion for Invite Contest Details -->
+    <button class="accordion">If The Prize Reaches $10,000</button>
+    <div class="panel">
+      <table>
+        <tr><th>Role</th><th>Reward</th></tr>
+        <tr>
+          <td>Top &amp; First Inviter</td><td>$1,000</td>
+        </tr>
+      </table>
+    </div>
 
-       <button class="accordion">If The Pot Reaches: $100,000,000 (100 Million)</button>
-       <div class="panel">
-           <table>
-               <tr><th>Role</th><th>Rewards</th></tr>
-               <tr><td>Top Bidder<br>Top Inviter<br>Top Poster<br>Top Post Checker<br>Oldest Active Bidder<br>First Bidder<br>First Inviter</td><td>$10,000,000</td></tr>
-               <tr><td>Top 10 Bidders<br>Top 10 Inviters<br>Top 10 Posters<br>Top 10 Post Checkers<br>10 Oldest Active Bidders<br>First 10 Bidders<br>First 10 Inviters</td><td>$1,000,000</td></tr>
-               <tr><td>Top 100 Bidders<br>Top 100 Inviters<br>Top 100 Posters<br>Top 100 Post Checkers<br>100 Oldest Active Bidders<br>First 100 Bidders<br>First 100 Inviters</td><td>$100,000</td></tr>
-               <tr><td>Top 1,000 Bidders<br>Top 1,000 Inviters<br>Top 1,000 Posters<br>Top 1,000 Post Checkers<br>1,000 Oldest Active Bidders<br>First 1,000 Bidders<br>First 1,000 Inviters</td><td>$10,000</td></tr>
-               <tr><td>Top 10,000 Bidders<br>Top 10,000 Inviters<br>Top 10,000 Posters<br>Top 10,000 Post Checkers<br>10,000 Oldest Active Bidders<br>First 10,000 Bidders<br>First 10,000 Inviters</td><td>$1,000</td></tr>
-           </table>
-       </div>
-   </div>
+    <button class="accordion">If The Prize Reaches $100,000</button>
+    <div class="panel">
+      <table>
+        <tr><th>Role</th><th>Reward</th></tr>
+        <tr>
+          <td>Top &amp; First Inviter</td><td>$10,000</td>
+        </tr>
+        <tr>
+          <td>Top 10 &amp; First 10 Inviters</td><td>$1,000</td>
+        </tr>
+      </table>
+    </div>
 
-    <script>
-        // Toggle dropdown menu
-        document.getElementById('menu-icon').addEventListener('click', function() {
-            const navLinks = document.getElementById('nav-links');
-            if (navLinks.style.display === 'flex') {
-                navLinks.style.display = 'none';
-            } else {
-                navLinks.style.display = 'flex';
-            }
-        });
+    <!-- Add more tiers as needed ... -->
+  </div>
 
-        // Close the dropdown when clicking outside
-        document.addEventListener('click', function(event) {
-            const navLinks = document.getElementById('nav-links');
-            const menuIcon = document.getElementById('menu-icon');
-            const isClickInsideMenu = navLinks.contains(event.target);
-            const isClickOnMenuIcon = menuIcon.contains(event.target);
+  <!-- SOCIAL MEDIA SECTION -->
+  <div class="social-media-section" id="social-media">
+    <h2>Get 5 Minutes for Each Social Media Post</h2>
+    <p>Post Last Man Left memes on social media, then verify to earn free minutes.</p>
+    <div class="btn-container">
+      <button class="btn" id="post-on-social">Make a Social Media Post</button>
+      <button class="btn" id="verify-posts">Verify Your Posts</button>
+    </div>
+  </div>
 
-            if (!isClickInsideMenu && !isClickOnMenuIcon && window.innerWidth < 768) {
-                navLinks.style.display = 'none';
-            }
-        });
+  <!-- LEADERBOARD SECTION -->
+  <div class="leaderboard-section" id="leaderboard">
+    <h2>Leaderboard</h2>
+    <p>Check out the top players placing bids:</p>
+    <table id="leaderboard-table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Time Left</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Sample Leaderboard Entries -->
+        <tr>
+          <td>1</td>
+          <td>PlayerOne</td>
+          <td>15:04:00</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>PlayerTwo</td>
+          <td>11:44:00</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>PlayerThree</td>
+          <td>10:03:00</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-        // Initial countdown time in seconds
-        let countdownTime = 300; // 5 minutes
+  <!-- FOOTER / TERMS LINK -->
+  <div class="content" style="margin-bottom: 50px;">
+    <p>
+      <a href="breakdown.html" class="footer-link">
+        Terms of Service
+      </a>
+    </p>
+  </div>
 
-        // Pot amount
-        let potAmount = 750.000; // starting pot
-        const potAmountElement = document.getElementById('pot-amount');
+  <!-- MAIN SCRIPT -->
+  <script>
+    // Toggle dropdown menu
+    document.getElementById('menu-icon').addEventListener('click', function() {
+      const navLinks = document.getElementById('nav-links');
+      if (navLinks.style.display === 'flex') {
+        navLinks.style.display = 'none';
+      } else {
+        navLinks.style.display = 'flex';
+      }
+    });
 
-        // Function to update pot display
-        function updatePotDisplay() {
-            const potStr = potAmount.toFixed(3);
-            const parts = potStr.split('.');
-            const integerPart = parts[0];
-            const decimalPart = parts[1]; // e.g. "000"
-            const firstTwoDecimals = decimalPart.slice(0, 2);
-            const lastDecimal = decimalPart.slice(-1);
+    // Close the dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      const navLinks = document.getElementById('nav-links');
+      const menuIcon = document.getElementById('menu-icon');
+      const isClickInsideMenu = navLinks.contains(event.target);
+      const isClickOnMenuIcon = menuIcon.contains(event.target);
 
-            potAmountElement.innerHTML = `$${integerPart}.${firstTwoDecimals}<span class="small-decimal">${lastDecimal}</span>`;
+      if (!isClickInsideMenu && !isClickOnMenuIcon && window.innerWidth < 768) {
+        navLinks.style.display = 'none';
+      }
+    });
+
+    // === COUNTDOWN & POT LOGIC ===
+    let countdownTime = 300; // 5 minutes
+    let potAmount = 750.000; // starting pot
+    const potAmountElement = document.getElementById('pot-amount');
+    const countdownTimerElement = document.getElementById('countdown-timer');
+
+    function updatePotDisplay() {
+      const potStr = potAmount.toFixed(3);
+      const parts = potStr.split('.');
+      const integerPart = parts[0];
+      const decimalPart = parts[1];
+      const firstTwoDecimals = decimalPart.slice(0, 2);
+      const lastDecimal = decimalPart.slice(-1);
+
+      potAmountElement.innerHTML = 
+        `$${integerPart}.${firstTwoDecimals}<span class="small-decimal">${lastDecimal}</span>`;
+    }
+
+    function updateCountdown() {
+      let hours = Math.floor(countdownTime / 3600);
+      let minutes = Math.floor((countdownTime % 3600) / 60);
+      let seconds = countdownTime % 60;
+
+      hours = hours < 10 ? "0" + hours : hours;
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      countdownTimerElement.textContent = `${hours}:${minutes}:${seconds}`;
+
+      if (countdownTime > 0) {
+        countdownTime--;
+      } else {
+        clearInterval(timerInterval);
+        countdownTimerElement.textContent = "Auction Ended!";
+      }
+    }
+
+    updatePotDisplay();
+    const timerInterval = setInterval(updateCountdown, 1000);
+
+    // === BID QUANTITY ===
+    const bidQuantityInput = document.getElementById('bid-quantity');
+    const decreaseBidButton = document.getElementById('decrease-bid');
+    const increaseBidButton = document.getElementById('increase-bid');
+    let bidQuantity = 1;
+
+    function updateBidQuantity(value) {
+      value = parseInt(value, 10);
+      if (isNaN(value) || value < 1) {
+        bidQuantity = 1;
+      } else {
+        bidQuantity = value;
+      }
+      bidQuantityInput.value = bidQuantity;
+    }
+
+    decreaseBidButton.addEventListener('click', function() {
+      updateBidQuantity(bidQuantity - 1);
+    });
+
+    increaseBidButton.addEventListener('click', function() {
+      updateBidQuantity(bidQuantity + 1);
+    });
+
+    bidQuantityInput.addEventListener('input', function() {
+      updateBidQuantity(bidQuantityInput.value);
+    });
+
+    // === PLACE BID BUTTON ===
+    const placeBidButton = document.getElementById('place-bid-button');
+    placeBidButton.addEventListener('click', function() {
+      if (isNaN(bidQuantity) || bidQuantity < 1) {
+        alert('Please enter a valid number of bids.');
+        updateBidQuantity(1);
+        return;
+      }
+      // Each bid adds 60 seconds
+      countdownTime += 60 * bidQuantity;
+      // Each bid adds $0.005 to the pot
+      potAmount += 0.005 * bidQuantity;
+      updatePotDisplay();
+      // Reset input
+      updateBidQuantity(1);
+    });
+
+    // === INVITE LINK + QR CODE ===
+    const inviteLinkInput = document.getElementById('invite-link');
+    const copyLinkButton = document.getElementById('copy-link');
+
+    function generateInviteLink() {
+      const userId = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+      return `https://lastmanleft.com/invite/${userId}`;
+    }
+
+    inviteLinkInput.value = generateInviteLink();
+
+    copyLinkButton.addEventListener('click', () => {
+      navigator.clipboard.writeText(inviteLinkInput.value)
+        .then(() => alert('Invite link copied to clipboard!'))
+        .catch(() => alert('Failed to copy invite link. Please try again.'));
+    });
+
+    // Create QR code for invite link
+    new QRCode(document.getElementById("invite-link-qrcode"), {
+      text: inviteLinkInput.value,
+      width: 150,
+      height: 150,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    // === GENERATE QR CODES FOR BUY BIDS SECTION ===
+    function generateQRCodes() {
+      const bidPackages = [
+        { id: '100', btc: '0.001', address: '1BoatSLRHtKNngkdXEeobR76b53LETtpyT' },
+        { id: '500', btc: '0.005', address: '1BoatSLRHtKNngkdXEeobR76b53LETtpyT' },
+        { id: '1000', btc: '0.01', address: '1BoatSLRHtKNngkdXEeobR76b53LETtpyT' },
+        { id: '5000', btc: '0.05', address: '1BoatSLRHtKNngkdXEeobR76b53LETtpyT' },
+        { id: '10000', btc: '0.1', address: '1BoatSLRHtKNngkdXEeobR76b53LETtpyT' }
+      ];
+
+      bidPackages.forEach(pkg => {
+        const qrcodeContainer = document.getElementById(`qrcode-${pkg.id}`);
+        if (qrcodeContainer) {
+          new QRCode(qrcodeContainer, {
+            text: pkg.address,
+            width: 150,
+            height: 150,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+          });
         }
+      });
+    }
+    window.onload = generateQRCodes;
 
-        // Call once to initialize
-        updatePotDisplay();
-
-        // Function to update the countdown timer
-        function updateCountdown() {
-            let hours = Math.floor(countdownTime / 3600);
-            let minutes = Math.floor((countdownTime % 3600) / 60);
-            let seconds = countdownTime % 60;
-
-            hours = hours < 10 ? "0" + hours : hours;
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            document.getElementById("countdown-timer").innerText = `${hours}:${minutes}:${seconds}`;
-
-            if (countdownTime > 0) {
-                countdownTime--;
-            } else {
-                clearInterval(timerInterval);
-                document.getElementById("countdown-timer").innerText = "Auction Ended!";
-            }
+    // === ACCORDIONS ===
+    const accordions = document.getElementsByClassName("accordion");
+    for (let i = 0; i < accordions.length; i++) {
+      accordions[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        const panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
         }
+      });
+    }
 
-        const timerInterval = setInterval(updateCountdown, 1000);
+    // === SOCIAL MEDIA BUTTONS (PLACEHOLDERS) ===
+    document.getElementById('post-on-social').addEventListener('click', function() {
+      alert('Redirecting you to make a social media post (placeholder functionality).');
+    });
+    document.getElementById('verify-posts').addEventListener('click', function() {
+      alert('Verifying your social media posts (placeholder functionality).');
+    });
+  </script>
 
-        // Bid quantity management
-        const bidQuantityInput = document.getElementById('bid-quantity');
-        const decreaseBidButton = document.getElementById('decrease-bid');
-        const increaseBidButton = document.getElementById('increase-bid');
-
-        let bidQuantity = 1;
-
-        function updateBidQuantity(value) {
-            value = parseInt(value, 10);
-            if (isNaN(value) || value < 1) {
-                bidQuantity = 1;
-            } else {
-                bidQuantity = value;
-            }
-            bidQuantityInput.value = bidQuantity;
-        }
-
-        decreaseBidButton.addEventListener('click', function() {
-            updateBidQuantity(bidQuantity - 1);
-        });
-
-        increaseBidButton.addEventListener('click', function() {
-            updateBidQuantity(bidQuantity + 1);
-        });
-
-        bidQuantityInput.addEventListener('input', function() {
-            updateBidQuantity(bidQuantityInput.value);
-        });
-
-        const placeBidButton = document.getElementById('place-bid-button');
-        placeBidButton.addEventListener('click', function() {
-            if (isNaN(bidQuantity) || bidQuantity < 1) {
-                alert('Please enter a valid number of bids.');
-                updateBidQuantity(1);
-                return;
-            }
-
-            // Add 60 seconds per bid
-            countdownTime += 60 * bidQuantity;
-
-            // Increase the pot amount by $0.005 per bid
-            potAmount += 0.005 * bidQuantity;
-            updatePotDisplay();
-
-            // Reset bid quantity to 1
-            updateBidQuantity(1);
-        });
-
-        // Copy link functionality
-        const inviteLinkElement = document.getElementById('invite-link');
-        const copyLinkButton = document.getElementById('copy-link');
-
-        const generateInviteLink = () => {
-            const userId = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
-            return `https://lastmanleft.com/invite/${userId}`;
-        };
-
-        inviteLinkElement.textContent = generateInviteLink();
-
-        copyLinkButton.addEventListener('click', () => {
-            const inviteLink = inviteLinkElement.textContent;
-            navigator.clipboard.writeText(inviteLink)
-                .then(() => alert('Invite link copied to clipboard!'))
-                .catch(() => alert('Failed to copy invite link. Please try again.'));
-        });
-
-        // Accordion logic
-        const accordions = document.getElementsByClassName("accordion");
-        for (let i = 0; i < accordions.length; i++) {
-            accordions[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                const panel = this.nextElementSibling;
-                if (panel.style.display === "block") {
-                    panel.style.display = "none";
-                } else {
-                    panel.style.display = "block";
-                }
-            });
-        }
-    </script>
 </body>
 </html>
