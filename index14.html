@@ -369,6 +369,32 @@
 .icon-button:hover {
     background-color: #005fa3;
 }   
+
+
+
+
+
+
+
+ 
+
+
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.buy-btn {
+    background-color: #2ECC40;
+}
+
+.buy-btn:hover {
+    background-color: #28a745;
+}
+
         
     </style>
 </head>
@@ -427,7 +453,11 @@
                 
         <br>
     
-        <button id="place-bid-button" class="btn">Add Minutes</button>
+       <div class="button-group">
+    <button id="place-bid-button" class="btn">Add Minutes</button>
+    <button id="buy-minutes-button" class="btn buy-btn">Buy Minutes</button>
+</div>
+    
     
         <p class="small">The last person with time left wins the opportunity to buy the the constantly growing prize for The Final Price, even if it grows to $1 billion!</p>
         <p class="small">The constantly growing prize grows every time someone adds time to their countdown!</p>
