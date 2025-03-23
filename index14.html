@@ -806,7 +806,9 @@
         updateBidQuantity(1);
         return;
     }
-
+    
+    
+        
     // Add 60 seconds per bid
     countdownTime += 60 * bidQuantity;
 
@@ -831,17 +833,7 @@
     updateBidQuantity(1);
 });
 
-            // Add 60 seconds per bid
-            countdownTime += 60 * bidQuantity;
-
-            // Increase the pot amount by $0.005 per bid
-            potAmount += 0.005 * bidQuantity;
-            updatePotDisplay();
-
-            // Reset bid quantity to 1
-            updateBidQuantity(1);
-        });
-
+            
         // Copy link functionality
         const inviteLinkInput = document.getElementById('invite-link');
         const copyLinkButton = document.getElementById('copy-link');
