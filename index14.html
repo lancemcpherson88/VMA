@@ -413,6 +413,27 @@
 .animate-roll {
     animation: roll-animation 0.6s ease-in-out;
 }
+
+
+.header-time {
+    margin-right: 15px;
+}
+
+#header-timer-link {
+    text-decoration: none;
+    color: #FF4136;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 6px 12px;
+    border: 2px solid #FF4136;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+#header-timer-link:hover {
+    background-color: #FF4136;
+    color: white;
+}
         
     </style>
 </head>
@@ -422,6 +443,14 @@
         <div class="logo">
             <a href="#">LAST MAN LEFT</a>
         </div>
+        
+<!-- Add this inside the header, ideally before .menu-icon -->
+<div class="header-time">
+    <a href="#place-bid-button" id="header-timer-link">
+        <span id="header-countdown">00:00:00</span>
+    </a>
+</div>
+        
         <div class="menu-icon" id="menu-icon">
             <i class="fas fa-bars">=</i>
         </div>
@@ -758,13 +787,16 @@
             seconds = seconds < 10 ? "0" + seconds : seconds;
 
             document.getElementById("countdown-timer").innerText = `${hours}:${minutes}:${seconds}`;
+            document.getElementById("header-countdown").innerText = `${hours}:${minutes}:${seconds}`;
 
             if (countdownTime > 0) {
                 countdownTime--;
             } else {
                 clearInterval(timerInterval);
                 document.getElementById("countdown-timer").innerText = "Auction Ended!";
-            }
+                document.getElementById("header-countdown").innerText = "Auction Ended!";           
+            
+             }
         }
 
         const timerInterval = setInterval(updateCountdown, 1000);
